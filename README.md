@@ -539,8 +539,5 @@ In case of errors, the API returns a JSON response with an error message and app
 For issues, feature requests, or questions, please open an issue in the GitHub repository.
 
 ## License
-
-This project is licensed under the GNU License V3 - see the LICENSE file for details.
-
-The Jyotish library used in this project is licensed under the GNU General Public License version 2 or later. See the [Jyotish LICENSE](https://github.com/kunjara/jyotish/blob/master/LICENSE) for more details.
-
+It's free. 
+Om Tat Sat
