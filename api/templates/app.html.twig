@@ -499,6 +499,55 @@
     footer a { color: var(--gold-dim); text-decoration: none; }
     footer a:hover { color: var(--gold); }
 
+    /* ── Location search ── */
+    .location-search-group { position: relative; }
+    .location-search-wrap { display: flex; gap: 8px; }
+    .location-search-wrap input { flex: 1; }
+    .suggestions-dropdown {
+      list-style: none;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      margin-top: 4px;
+      max-height: 200px;
+      overflow-y: auto;
+      position: absolute;
+      z-index: 200;
+      left: 0; right: 0;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+    }
+    .suggestion-item {
+      padding: 9px 12px;
+      cursor: pointer;
+      font-size: 13px;
+      border-bottom: 1px solid var(--border);
+      transition: background var(--transition);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .suggestion-item:last-child { border-bottom: none; }
+    .suggestion-item:hover { background: var(--card); color: var(--gold); }
+    .tz-auto-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 12px;
+      cursor: pointer;
+      user-select: none;
+    }
+    input[type="checkbox"] {
+      width: 14px; height: 14px;
+      padding: 0;
+      border: 1px solid var(--border-h);
+      background: var(--surface);
+      cursor: pointer;
+      accent-color: var(--gold);
+      flex-shrink: 0;
+    }
+
     /* ── Utilities ── */
     .hidden { display: none !important; }
     .text-gold { color: var(--gold); }
@@ -552,9 +601,14 @@
         </div>
       </div>
 
-      <div class="form-group">
-        <label>Location (Lat / Lon)</label>
-        <div class="form-row">
+      <div class="form-group location-search-group" style="grid-column: 1 / -1">
+        <label>Location</label>
+        <div class="location-search-wrap">
+          <input type="text" id="f-location" placeholder="Search city or place…" autocomplete="off">
+          <button type="button" class="btn btn-secondary" id="location-search-btn" style="padding:9px 14px;font-size:13px;white-space:nowrap">🔍 Search</button>
+        </div>
+        <ul class="suggestions-dropdown hidden" id="suggestions-list"></ul>
+        <div class="form-row" style="margin-top:8px">
           <input type="number" id="f-lat" placeholder="Latitude"  step="0.0001" value="35.6892">
           <input type="number" id="f-lon" placeholder="Longitude" step="0.0001" value="51.3890">
         </div>
@@ -601,6 +655,10 @@
           <option value="+13:00">UTC+13:00 — Samoa</option>
           <option value="+14:00">UTC+14:00</option>
         </select>
+        <label class="tz-auto-row">
+          <input type="checkbox" id="f-tz-auto" checked>
+          <span>Auto timezone from location</span>
+        </label>
       </div>
 
       <div class="form-group">
@@ -774,8 +832,8 @@
   const inputSec    = document.getElementById('input-section');
   const toast       = document.getElementById('toast');
 
-  let currentParams  = null;
-  let currentStyle   = 'north';
+  let currentParams    = null;
+  let currentStyle     = 'north';
   let currentChartData = null;
 
   // ── Form style buttons ─────────────────────────────────────
@@ -797,7 +855,7 @@
     if (currentParams) loadChartSvg(currentParams, currentStyle);
   });
 
-  // ── Scroll up ─────────────────────────────────────────────
+  // ── Scroll up ──────────────────────────────────────────────
   document.getElementById('scroll-up-btn').addEventListener('click', () => {
     inputSec.scrollIntoView({ behavior: 'smooth' });
   });
@@ -819,18 +877,87 @@
   nowBtn.addEventListener('click', async function () {
     hideError();
     const now = new Date();
-    const pad = n => String(n).padStart(2, '0');
     document.getElementById('f-year').value  = now.getFullYear();
     document.getElementById('f-month').value = now.getMonth() + 1;
     document.getElementById('f-day').value   = now.getDate();
     document.getElementById('f-hour').value  = now.getHours();
     document.getElementById('f-min').value   = now.getMinutes();
     document.getElementById('f-sec').value   = now.getSeconds();
-
     const params = readForm();
     params.name  = 'Transit — Now';
     currentParams = params;
     await runCalculation(params);
+  });
+
+  // ── Location search ────────────────────────────────────────
+  const locationInput = document.getElementById('f-location');
+  const suggList      = document.getElementById('suggestions-list');
+  const locSearchBtn  = document.getElementById('location-search-btn');
+
+  async function doLocationSearch() {
+    const q = locationInput.value.trim();
+    if (!q) return;
+    locSearchBtn.textContent = '…';
+    locSearchBtn.disabled = true;
+    try {
+      const results = await geocodeLocation(q);
+      suggList.innerHTML = '';
+      if (!results.length) {
+        const li = document.createElement('li');
+        li.className = 'suggestion-item';
+        li.textContent = 'No results found';
+        li.style.color = 'var(--muted)';
+        suggList.appendChild(li);
+      } else {
+        results.forEach(r => {
+          const li = document.createElement('li');
+          li.className = 'suggestion-item';
+          li.textContent = r.display_name;
+          li.addEventListener('click', async () => {
+            document.getElementById('f-lat').value = parseFloat(r.lat).toFixed(4);
+            document.getElementById('f-lon').value = parseFloat(r.lon).toFixed(4);
+            locationInput.value = r.display_name.split(',')[0].trim();
+            suggList.classList.add('hidden');
+            if (document.getElementById('f-tz-auto').checked) {
+              const tz = await fetchTimezone(r.lat, r.lon);
+              if (tz) setTimezoneSelect(tz);
+            }
+          });
+          suggList.appendChild(li);
+        });
+      }
+      suggList.classList.remove('hidden');
+    } catch (err) {
+      showError('Location search failed. Check your connection.');
+    } finally {
+      locSearchBtn.textContent = '🔍 Search';
+      locSearchBtn.disabled = false;
+    }
+  }
+
+  locSearchBtn.addEventListener('click', doLocationSearch);
+  locationInput.addEventListener('keydown', e => {
+    if (e.key === 'Enter') { e.preventDefault(); doLocationSearch(); }
+  });
+
+  document.addEventListener('click', e => {
+    if (!e.target.closest('.location-search-group')) suggList.classList.add('hidden');
+  });
+
+  let tzAutoTimer = null;
+  ['f-lat', 'f-lon'].forEach(id => {
+    document.getElementById(id).addEventListener('change', () => {
+      if (!document.getElementById('f-tz-auto').checked) return;
+      clearTimeout(tzAutoTimer);
+      tzAutoTimer = setTimeout(async () => {
+        const lat = document.getElementById('f-lat').value;
+        const lon = document.getElementById('f-lon').value;
+        if (lat && lon) {
+          const tz = await fetchTimezone(lat, lon);
+          if (tz) setTimezoneSelect(tz);
+        }
+      }, 600);
+    });
   });
 
   // ── Read form ──────────────────────────────────────────────
@@ -863,10 +990,7 @@
 
     try {
       const apiParams = buildApiParams(params);
-
-      const [chartResp] = await Promise.all([
-        fetch('/api/calculate?' + new URLSearchParams(apiParams)),
-      ]);
+      const chartResp = await fetch('/api/calculate?' + new URLSearchParams(apiParams));
 
       if (!chartResp.ok) {
         const err = await chartResp.json().catch(() => ({}));
@@ -932,7 +1056,6 @@
       const svgText = await resp.text();
       container.innerHTML = svgText;
 
-      // Theme the SVG for dark mode
       const svg = container.querySelector('svg');
       if (svg) {
         svg.style.maxWidth = '100%';
@@ -965,7 +1088,6 @@
     renderPlanets(chart);
     renderDasha(chart);
 
-    // Sync chart style tabs with form style
     document.querySelectorAll('.chart-tab').forEach(t => {
       t.classList.toggle('active', t.dataset.style === params.style);
     });
@@ -976,8 +1098,8 @@
     const lg = (chart.lagna && chart.lagna['Lg']) || (chart.bhava && chart.bhava[1]);
     if (!lg) return;
 
-    const rashi   = lg.rashi;
-    const deg     = lg.degree ? parseFloat(lg.degree).toFixed(2) : '—';
+    const rashi    = lg.rashi;
+    const deg      = lg.degree ? parseFloat(lg.degree).toFixed(2) : '—';
     const signName = RASHI[rashi] || '—';
     const symbol   = RASHI_SYMBOL[rashi] || '☽';
     const nak      = lg.nakshatra ? (lg.nakshatra.name || '') : '';
@@ -996,17 +1118,14 @@
     const graha = chart.graha || {};
     const bhava = chart.bhava || {};
 
-    // Build rashi→house map
     const rashiToHouse = {};
     Object.entries(bhava).forEach(([h, b]) => { rashiToHouse[b.rashi] = parseInt(h); });
 
-    // Add lagna row
     if (chart.lagna && chart.lagna['Lg']) {
       const lg = chart.lagna['Lg'];
       tbody.appendChild(makePlanetRow('Lg', 'Ascendant', lg, rashiToHouse, false));
     }
 
-    // Add planets in canonical order
     PLANET_ORDER.filter(k => k !== 'Lg').forEach(key => {
       if (graha[key]) {
         const retro = parseFloat(graha[key].speed || 0) < 0;
@@ -1042,17 +1161,17 @@
     const dashaData = chart.dasha;
     if (!dashaData || typeof dashaData !== 'object') return;
 
-    const tbody  = document.getElementById('dasha-tbody');
-    const today  = new Date();
+    const tbody = document.getElementById('dasha-tbody');
+    const today = new Date();
     tbody.innerHTML = '';
 
     let currentEntry = null;
 
-    // Flatten top-level dasha entries (mahadasha lords as keys)
+    // vimshottari response nests periods under chart.dasha.periods
+    const periods = dashaData.periods || dashaData;
     const entries = [];
-    Object.entries(dashaData).forEach(([lord, info]) => {
+    Object.entries(periods).forEach(([lord, info]) => {
       if (!info || typeof info !== 'object') return;
-      // Dasha library uses 'start'/'end' field names
       const s = info.start || info.from;
       const e = info.end   || info.to;
       if (s && e) {
@@ -1060,7 +1179,6 @@
       }
     });
 
-    // Sort by start date
     entries.sort((a, b) => a.from - b.from);
 
     entries.forEach(({ lord, from, to }) => {
@@ -1084,12 +1202,11 @@
       tbody.appendChild(tr);
     });
 
-    // Current dasha banner
     if (currentEntry) {
       const { lord, from, to } = currentEntry;
-      const total    = to - from;
-      const elapsed  = today - from;
-      const pct      = Math.min(100, Math.max(0, (elapsed / total) * 100)).toFixed(1);
+      const total   = to - from;
+      const elapsed = today - from;
+      const pct     = Math.min(100, Math.max(0, (elapsed / total) * 100)).toFixed(1);
 
       document.getElementById('dasha-current-banner').style.display = 'flex';
       document.getElementById('dasha-lord-abbr').textContent   = lord;
@@ -1166,11 +1283,57 @@
     } catch (e) { /* ignore bad hash */ }
   }
 
+  // ── Geocoding & auto timezone ──────────────────────────────
+  async function geocodeLocation(query) {
+    const resp = await fetch(
+      'https://nominatim.openstreetmap.org/search?q=' + encodeURIComponent(query) + '&format=json&limit=5&addressdetails=1',
+      { headers: { 'Accept-Language': 'en' } }
+    );
+    if (!resp.ok) throw new Error('Geocoding failed');
+    return resp.json();
+  }
+
+  async function fetchTimezone(lat, lon) {
+    try {
+      const resp = await fetch(
+        'https://timeapi.io/api/TimeZone/coordinate?latitude=' + lat + '&longitude=' + lon
+      );
+      if (!resp.ok) return null;
+      const data = await resp.json();
+      const secs = data.currentUtcOffset && data.currentUtcOffset.seconds;
+      if (secs == null) return null;
+      const abs = Math.abs(secs);
+      const h   = Math.floor(abs / 3600);
+      const m   = Math.floor((abs % 3600) / 60);
+      return (secs < 0 ? '-' : '+') + String(h).padStart(2, '0') + ':' + String(m).padStart(2, '0');
+    } catch (e) { return null; }
+  }
+
+  function setTimezoneSelect(offset) {
+    const sel = document.getElementById('f-tz');
+    for (let i = 0; i < sel.options.length; i++) {
+      if (sel.options[i].value === offset) { sel.selectedIndex = i; return; }
+    }
+    const sign = offset[0] === '-' ? -1 : 1;
+    const parts = offset.slice(1).split(':').map(Number);
+    const totalMin = sign * (parts[0] * 60 + (parts[1] || 0));
+    let best = 0, bestDiff = Infinity;
+    for (let i = 0; i < sel.options.length; i++) {
+      const v  = sel.options[i].value;
+      const vs = v[0] === '-' ? -1 : 1;
+      const vp = v.slice(1).split(':').map(Number);
+      const vMin = vs * (vp[0] * 60 + (vp[1] || 0));
+      const diff = Math.abs(vMin - totalMin);
+      if (diff < bestDiff) { best = i; bestDiff = diff; }
+    }
+    sel.selectedIndex = best;
+  }
+
   // ── Helpers ────────────────────────────────────────────────
   function setLoading(on) {
-    calcBtn.disabled        = on;
+    calcBtn.disabled          = on;
     calcSpinner.style.display = on ? 'block' : 'none';
-    calcBtnText.textContent = on ? 'Calculating…' : 'Calculate Chart';
+    calcBtnText.textContent   = on ? 'Calculating…' : 'Calculate Chart';
   }
 
   function showError(msg) {
