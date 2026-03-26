@@ -15,3 +15,21 @@ services:
       timeout: 10s
       retries: 3
       start_period: 15s
+
+  jyotish_frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    container_name: jyotish_frontend
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:${FRONTEND_PORT:-8000}:80"
+    depends_on:
+      jyotish_api:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:80/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 5s
