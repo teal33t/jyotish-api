@@ -7,11 +7,12 @@ type HttpResponse<T> = {
 class HttpService {
   private baseUrl: string;
 
-  constructor(baseUrl: string = 'http://localhost:8000') {
+  constructor(baseUrl: string = 'http://localhost:9393') {
     this.baseUrl = baseUrl;
   }
 
   async get<T>(path: string): Promise<HttpResponse<T>> {
+    console.log(`Making GET request to: ${this.baseUrl}${path}`);
     const response = await fetch(`${this.baseUrl}${path}`, {
       method: 'GET',
       headers: {
