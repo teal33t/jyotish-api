@@ -13,6 +13,7 @@
     "@react-native-community/datetimepicker": "8.4.4",
     "@react-native-picker/picker": "2.11.4",
     "expo": "~54.0.34",
+    "expo-constants": "~18.0.13",
     "expo-status-bar": "~3.0.9",
     "react": "19.1.0",
     "react-native": "0.81.5",

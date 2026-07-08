@@ -8,7 +8,11 @@ import BirthTimeInput from '../components/birthTimeInput';
 import BirthPlaceInput from '../components/birthPlaceInput';
 import GenderSwitch from '../components/genderSwitch';
 
-export default function NewKundli() {
+type NewKundliProps = {
+  onCreateChart?: () => void;
+};
+
+export default function NewKundli({ onCreateChart }: NewKundliProps) {
   const [inputValue, setInputValue] = useState('');
   const [date, setDate] = useState(new Date());
   const [day, setDay] = useState('');
@@ -65,7 +69,7 @@ export default function NewKundli() {
       <HorizontalBreak/>
       <GenderSwitch isFemale={isFemale} onValueChange={setIsFemale} />
       <HorizontalBreak/>
-      <Button mode="contained" onPress={() => {}}>
+      <Button mode="contained" onPress={onCreateChart}>
         Create Birth Chart
       </Button>
     </View>

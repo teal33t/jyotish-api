@@ -1,10 +1,9 @@
 import * as React from 'react';
-import { View, useWindowDimensions } from 'react-native';
-import { TabView, SceneMap } from 'react-native-tab-view';
-import SavedKundalis from './pages/SavedKundalis';
-import NewKundli from './pages/NewKundli';
-import { StyleSheet } from 'react-native';
-import { MD3LightTheme, PaperProvider, Text, Button, Card } from 'react-native-paper';
+import { View, StyleSheet } from 'react-native';
+import Constants from 'expo-constants';
+import CreateKundli from './pages/CreateKundli';
+import ViewKundli from './pages/ViewKundli';
+import { MD3LightTheme, PaperProvider } from 'react-native-paper';
 
 // You can customize your theme using Material Design 3 (MD3) guidelines
 const theme = {
@@ -16,46 +15,27 @@ const theme = {
   },
 };
 
-const renderScene = SceneMap({
-  saved: SavedKundalis,
-  new: NewKundli,
+const styles = StyleSheet.create({
+  base: {
+    flex: 1,
+    marginTop: Constants.statusBarHeight,
+  },
 });
 
-const routes = [
-  { key: 'saved', title: 'Saved Kundali`s' },
-  { key: 'new', title: 'New Kundli' },
-];
+type AppRoute = 'create' | 'view';
 
 export default function App() {
-  const layout = useWindowDimensions();
-  const [index, setIndex] = React.useState(0);
+  const [route, setRoute] = React.useState<AppRoute>('create');
 
   return (
-
     <PaperProvider theme={theme}>
-      <TabView
-        style={{ marginTop: 50 }}
-        navigationState={{ index, routes }}
-        renderScene={renderScene}
-        onIndexChange={setIndex}
-        initialLayout={{ width: layout.width }}
-      />
+      <View style={styles.base}>
+        {route === 'create' ? (
+          <CreateKundli onNavigateToView={() => setRoute('view')} />
+        ) : (
+          <ViewKundli onNavigateToCreate={() => setRoute('create')} />
+        )}
+      </View>
     </PaperProvider>
-
-
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 16,
-  },
-  card: {
-    width: '100%',
-    maxWidth: 400,
-  },
-});
