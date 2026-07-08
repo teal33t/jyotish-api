@@ -1,26 +1,30 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { TextInput } from 'react-native-paper';
+import { TextInput, HelperText } from 'react-native-paper';
 
 type NameInputProps = {
   value: string;
   onChangeText: (text: string) => void;
+  error?: boolean;
 };
 
-const NameInput = ({ value, onChangeText }: NameInputProps) => {
+const NameInput = ({ value, onChangeText, error }: NameInputProps) => {
   return (
     <View>
-      <Text style={styles.label}>Name:</Text>
+      <Text style={styles.label}>Name *</Text>
       <TextInput
         label="Name"
         mode="flat"
-        
+        error={error}
         style={styles.input}
         // placeholder="Name"
         placeholderTextColor="#999"
         onChangeText={onChangeText}
         value={value}
       />
+      <HelperText type="error" visible={!!error}>
+        Name is required
+      </HelperText>
     </View>
   );
 };

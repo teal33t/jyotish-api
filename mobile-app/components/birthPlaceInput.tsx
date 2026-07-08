@@ -1,21 +1,23 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { TextInput, IconButton } from 'react-native-paper';
+import { TextInput, IconButton, HelperText } from 'react-native-paper';
 
 type BirthPlaceInputProps = {
   value: string;
   onChangeText: (text: string) => void;
   onSearchPress: () => void;
+  error?: boolean;
 };
 
-const BirthPlaceInput = ({ value, onChangeText, onSearchPress }: BirthPlaceInputProps) => {
+const BirthPlaceInput = ({ value, onChangeText, onSearchPress, error }: BirthPlaceInputProps) => {
   return (
     <View>
-      <Text style={styles.label}>Birth Place:</Text>
+      <Text style={styles.label}>Birth Place *</Text>
       <View style={styles.row}>
         <TextInput
           label="Birth Place"
           mode="flat"
+          error={error}
           style={[styles.input, styles.textField]}
           placeholderTextColor="#999"
           onChangeText={onChangeText}
@@ -28,6 +30,9 @@ const BirthPlaceInput = ({ value, onChangeText, onSearchPress }: BirthPlaceInput
           onPress={onSearchPress}
         />
       </View>
+      <HelperText type="error" visible={!!error}>
+        Birth place is required
+      </HelperText>
     </View>
   );
 };

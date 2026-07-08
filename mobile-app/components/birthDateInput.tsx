@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
+import { HelperText } from 'react-native-paper';
 
 type BirthDateInputProps = {
   day: string;
@@ -9,6 +10,7 @@ type BirthDateInputProps = {
   onChangeDay: (day: string) => void;
   onChangeMonth: (month: string) => void;
   onChangeYear: (year: string) => void;
+  error?: boolean;
 };
 
 const range = (start: number, end: number) =>
@@ -25,12 +27,13 @@ const BirthDateInput = ({
   onChangeDay,
   onChangeMonth,
   onChangeYear,
+  error,
 }: BirthDateInputProps) => {
   return (
     <View>
-      <Text style={styles.label}>Birth Date:</Text>
+      <Text style={styles.label}>Birth Date *</Text>
       <View style={styles.row}>
-        <View style={[styles.pickerWrapper, styles.dateField]}>
+        <View style={[styles.pickerWrapper, styles.dateField, error && styles.pickerWrapperError]}>
           <Picker
             selectedValue={day}
             onValueChange={onChangeDay}
@@ -42,7 +45,7 @@ const BirthDateInput = ({
             ))}
           </Picker>
         </View>
-        <View style={[styles.pickerWrapper, styles.dateField]}>
+        <View style={[styles.pickerWrapper, styles.dateField, error && styles.pickerWrapperError]}>
           <Picker
             selectedValue={month}
             onValueChange={onChangeMonth}
@@ -54,7 +57,7 @@ const BirthDateInput = ({
             ))}
           </Picker>
         </View>
-        <View style={[styles.pickerWrapper, styles.dateField]}>
+        <View style={[styles.pickerWrapper, styles.dateField, error && styles.pickerWrapperError]}>
           <Picker
             selectedValue={year}
             onValueChange={onChangeYear}
@@ -67,6 +70,9 @@ const BirthDateInput = ({
           </Picker>
         </View>
       </View>
+      <HelperText type="error" visible={!!error}>
+        Full birth date is required
+      </HelperText>
     </View>
   );
 };
@@ -88,6 +94,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     justifyContent: 'center',
     overflow: 'hidden',
+  },
+  pickerWrapperError: {
+    borderColor: '#B00020',
   },
   dateField: {
     flex: 1,

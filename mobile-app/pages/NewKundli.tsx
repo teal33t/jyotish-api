@@ -22,6 +22,7 @@ export default function NewKundli({ onCreateChart }: NewKundliProps) {
   const [minute, setMinute] = useState('');
   const [birthPlace, setBirthPlace] = useState('');
   const [isFemale, setIsFemale] = useState(false);
+  const [showErrors, setShowErrors] = useState(false);
 
   const updateDate = (nextDay: string, nextMonth: string, nextYear: string) => {
     const d = parseInt(nextDay, 10);
@@ -32,9 +33,27 @@ export default function NewKundli({ onCreateChart }: NewKundliProps) {
     }
   };
 
+  const nameError = inputValue.trim() === '';
+  const dateError = day === '' || month === '' || year === '';
+  const timeError = hour === '' || minute === '';
+  const birthPlaceError = birthPlace.trim() === '';
+  const isValid = !nameError && !dateError && !timeError && !birthPlaceError;
+
+  const handleCreateChart = () => {
+    if (!isValid) {
+      setShowErrors(true);
+      return;
+    }
+    onCreateChart?.();
+  };
+
   return (
     <View style={styles.container}>
-      <NameInput value={inputValue} onChangeText={setInputValue} />
+      <NameInput
+        value={inputValue}
+        onChangeText={setInputValue}
+        error={showErrors && nameError}
+      />
       <HorizontalBreak/>
       <BirthDateInput
         day={day}
@@ -52,6 +71,7 @@ export default function NewKundli({ onCreateChart }: NewKundliProps) {
           setYear(text);
           updateDate(day, month, text);
         }}
+        error={showErrors && dateError}
       />
       <HorizontalBreak/>
       <BirthTimeInput
@@ -59,17 +79,19 @@ export default function NewKundli({ onCreateChart }: NewKundliProps) {
         minute={minute}
         onChangeHour={setHour}
         onChangeMinute={setMinute}
+        error={showErrors && timeError}
       />
       <HorizontalBreak/>
       <BirthPlaceInput
         value={birthPlace}
         onChangeText={setBirthPlace}
         onSearchPress={() => {}}
+        error={showErrors && birthPlaceError}
       />
       <HorizontalBreak/>
       <GenderSwitch isFemale={isFemale} onValueChange={setIsFemale} />
       <HorizontalBreak/>
-      <Button mode="contained" onPress={onCreateChart}>
+      <Button mode="contained" onPress={handleCreateChart}>
         Create Birth Chart
       </Button>
     </View>

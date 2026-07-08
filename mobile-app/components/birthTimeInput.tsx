@@ -1,12 +1,14 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
+import { HelperText } from 'react-native-paper';
 
 type BirthTimeInputProps = {
   hour: string;
   minute: string;
   onChangeHour: (hour: string) => void;
   onChangeMinute: (minute: string) => void;
+  error?: boolean;
 };
 
 const range = (start: number, end: number) =>
@@ -20,12 +22,13 @@ const BirthTimeInput = ({
   minute,
   onChangeHour,
   onChangeMinute,
+  error,
 }: BirthTimeInputProps) => {
   return (
     <View>
-      <Text style={styles.label}>Birth Time:</Text>
+      <Text style={styles.label}>Birth Time *</Text>
       <View style={styles.row}>
-        <View style={[styles.pickerWrapper, styles.timeField]}>
+        <View style={[styles.pickerWrapper, styles.timeField, error && styles.pickerWrapperError]}>
           <Picker
             selectedValue={hour}
             onValueChange={onChangeHour}
@@ -37,7 +40,7 @@ const BirthTimeInput = ({
             ))}
           </Picker>
         </View>
-        <View style={[styles.pickerWrapper, styles.timeField]}>
+        <View style={[styles.pickerWrapper, styles.timeField, error && styles.pickerWrapperError]}>
           <Picker
             selectedValue={minute}
             onValueChange={onChangeMinute}
@@ -50,6 +53,9 @@ const BirthTimeInput = ({
           </Picker>
         </View>
       </View>
+      <HelperText type="error" visible={!!error}>
+        Birth time is required
+      </HelperText>
     </View>
   );
 };
@@ -71,6 +77,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     justifyContent: 'center',
     overflow: 'hidden',
+  },
+  pickerWrapperError: {
+    borderColor: '#B00020',
   },
   timeField: {
     flex: 1,
