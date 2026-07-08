@@ -6,7 +6,7 @@ services:
     container_name: jyotish_api
     restart: unless-stopped
     ports:
-      - "127.0.0.1:${HOST_PORT:-9393}:8080"
+      - "${HOST_PORT:-9393}:8080"
     env_file:
       - ./api/.env
     environment:

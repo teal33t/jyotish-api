@@ -8,18 +8,18 @@ const { width } = Dimensions.get('window');
 const apiService = new HttpService('http://192.168.1.10:9393');
 
 const fallbackChartData: Record<number, { rashi: string; planets: string[] }> = {
-  1: { rashi: '1', planets: ['Asc'] },
-  2: { rashi: '2', planets: ['Mo'] },
-  3: { rashi: '3', planets: [] },
-  4: { rashi: '4', planets: ['Ma'] },
-  5: { rashi: '5', planets: [] },
-  6: { rashi: '6', planets: ['Sa', 'Ju'] },
-  7: { rashi: '7', planets: ['Ketu'] },
-  8: { rashi: '8', planets: [] },
-  9: { rashi: '9', planets: ['Su', 'Me'] },
-  10: { rashi: '10', planets: ['Ve'] },
-  11: { rashi: '11', planets: [] },
-  12: { rashi: '12', planets: ['Rahu'] },
+  // 1: { rashi: '2', planets: ['Asc', 'Ma'] },
+  // 2: { rashi: '3', planets: ['Su', 'Me', 'Ve'] },
+  // 3: { rashi: '4', planets: ['Rahu'] },
+  // 4: { rashi: '5', planets: [] },
+  // 5: { rashi: '6', planets: ['Sa', 'Ju'] },
+  // 6: { rashi: '7', planets: [] },
+  // 7: { rashi: '8', planets: ['Mo'] },
+  // 8: { rashi: '9', planets: [] },
+  // 9: { rashi: '10', planets: ['Ketu'] },
+  // 10: { rashi: '11', planets: [] },
+  // 11: { rashi: '12', planets: [] },
+  // 12: { rashi: '1', planets: [] },
 };
 
 type ChartResponse = {
@@ -40,6 +40,28 @@ const isChartData = (
   );
 };
 
+const formatChartData = (
+  chart: any
+): Record<number, { rashi: string; planets: string[] }> => {
+  const formattedData: Record<number, { rashi: string; planets: string[] }> = {};
+  const houses = chart['houses'];
+  const lagna = chart['lagna']['Lg'];
+  const startAsc = parseInt(lagna['rashi']);
+  
+  Object.keys(houses).forEach((house) => {
+    const houseData = houses[house];
+    const planets = Object.keys(houseData["graha"])
+    const rashi = (startAsc + (parseInt(house) - 1))
+    formattedData[parseInt(house)] = {
+        rashi: String(rashi > 12 ? rashi - 12 : rashi),
+        planets: planets
+    }
+    // console.log("house " + house + " planets:",     planets);
+});
+
+  return formattedData;
+}
+
 export default function Chart() {
   const [chartData, setChartData] = React.useState<
     Record<number, { rashi: string; planets: string[] }>
@@ -51,15 +73,32 @@ export default function Chart() {
 
     (async () => {
       try {
-        const response = await apiService.get<ChartResponse>('/api/calculate?latitude=28.6139&longitude=77.209&year=2023&month=12&day=25&hour=12&min=0&sec=0&time_zone=%2B03%3A30&dst_hour=0&dst_min=0&nesting=0&varga=D1%2CD9&infolevel=basic%2Cpanchanga%2Ctransit');
-  
-        if (!cancelled && response.ok && isChartData(response.data?.chart)) {
-          setChartData(response.data.chart);
+        const params = {
+          latitude: '20.8980',
+          longitude: '74.7732',
+          year: '1981',
+          month: '06',
+          day: '15',
+          hour: '04',
+          min: '29',
+          sec: '0',
+          time_zone: '+05:30',
+          dst_hour: '0',
+          dst_min: '0',
+          nesting: '0',
+          varga: 'D1',
+          infolevel: 'basic,panchanga,transit',
+        };
+        const response = await apiService.get<ChartResponse>('/api/calculate', params);
+        const formattedData = formatChartData(response.data.chart);
+        if (response.ok && response.data?.chart) {
+          setChartData(formattedData);
+          console.log('Chart data fetched successfully:', formattedData);
         }
   
         if (!cancelled) setLoading(false);
         
-        console.log('Fetching chart data:', response.data);
+        // console.log('Fetching chart data:', response.data);
       } catch (error) {
         console.log('Error fetching chart data:', error);
         setLoading(false);

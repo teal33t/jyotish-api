@@ -7,13 +7,21 @@ type HttpResponse<T> = {
 class HttpService {
   private baseUrl: string;
 
-  constructor(baseUrl: string = 'http://localhost:9393') {
+  constructor(baseUrl: string = process.env.EXPO_PUBLIC_BASE_URL ?? 'http://localhost:9393') {
     this.baseUrl = baseUrl;
   }
 
-  async get<T>(path: string): Promise<HttpResponse<T>> {
-    console.log(`Making GET request to: ${this.baseUrl}${path}`);
-    const response = await fetch(`${this.baseUrl}${path}`, {
+  async get<T>(path: string, params?: Record<string, string>): Promise<HttpResponse<T>> {
+    let url = `${this.baseUrl}${path}`;
+    if (params) {
+      const searchParams = new URLSearchParams(params);
+      url += `?${searchParams.toString()}`;
+    }
+    
+    
+    console.log(`Making GET request to: ${url}`);
+
+    const response = await fetch(url, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
