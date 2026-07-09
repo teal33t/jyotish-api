@@ -1,10 +1,13 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { Switch } from 'react-native-paper';
+import { SegmentedButtons } from 'react-native-paper';
+
+// const [value, setValue] = useState('Male');
 
 type GenderSwitchProps = {
-  isFemale: boolean;
-  onValueChange: (isFemale: boolean) => void;
+  isFemale: string;
+  onValueChange: (isFemale: string) => void;
 };
 
 const GenderSwitch = ({ isFemale, onValueChange }: GenderSwitchProps) => {
@@ -12,9 +15,23 @@ const GenderSwitch = ({ isFemale, onValueChange }: GenderSwitchProps) => {
     <View>
       <Text style={styles.label}>Gender:</Text>
       <View style={styles.row}>
-        <Text style={styles.option}>Male</Text>
-        <Switch value={isFemale} onValueChange={onValueChange} />
-        <Text style={styles.option}>Female</Text>
+        <SegmentedButtons
+          value={isFemale}
+          onValueChange={onValueChange}
+          buttons={[
+            {
+              value: 'Male',
+              label: 'Male',
+              icon: 'face-man',
+            },
+            {
+              value: 'Female',
+              label: 'Female',
+              icon: 'face-woman',
+            }
+          ]}
+        />
+
       </View>
     </View>
   );

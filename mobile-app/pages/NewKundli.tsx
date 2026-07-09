@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, StyleSheet } from 'react-native';
-import { Button } from 'react-native-paper';
+import { Button, TextInput } from 'react-native-paper';
 import HorizontalBreak from '../components/horizontalBreak';
 import NameInput from '../components/nameInput';
 import BirthDateInput from '../components/birthDateInput';
@@ -21,7 +21,9 @@ export default function NewKundli({ onCreateChart }: NewKundliProps) {
   const [hour, setHour] = useState('');
   const [minute, setMinute] = useState('');
   const [birthPlace, setBirthPlace] = useState('');
-  const [isFemale, setIsFemale] = useState(false);
+  const [latitude, setLatitude] = useState('');
+  const [longitude, setLongitude] = useState('');
+  const [isFemale, setIsFemale] = useState("Male");
   const [showErrors, setShowErrors] = useState(false);
 
   const updateDate = (nextDay: string, nextMonth: string, nextYear: string) => {
@@ -54,7 +56,6 @@ export default function NewKundli({ onCreateChart }: NewKundliProps) {
         onChangeText={setInputValue}
         error={showErrors && nameError}
       />
-      <HorizontalBreak/>
       <BirthDateInput
         day={day}
         month={month}
@@ -73,7 +74,6 @@ export default function NewKundli({ onCreateChart }: NewKundliProps) {
         }}
         error={showErrors && dateError}
       />
-      <HorizontalBreak/>
       <BirthTimeInput
         hour={hour}
         minute={minute}
@@ -81,14 +81,32 @@ export default function NewKundli({ onCreateChart }: NewKundliProps) {
         onChangeMinute={setMinute}
         error={showErrors && timeError}
       />
-      <HorizontalBreak/>
       <BirthPlaceInput
         value={birthPlace}
         onChangeText={setBirthPlace}
         onSearchPress={() => {}}
         error={showErrors && birthPlaceError}
       />
-      <HorizontalBreak/>
+      <View style={styles.coordRow}>
+        <TextInput
+          label="Latitude"
+          mode="flat"
+          placeholder="Latitude"
+          value={latitude}
+          onChangeText={setLatitude}
+          style={[styles.input, styles.coordField]}
+          placeholderTextColor="#999"
+        />
+        <TextInput
+          label="Longitude"
+          mode="flat"
+          placeholder="Longitude"
+          value={longitude}
+          onChangeText={setLongitude}
+          style={[styles.input, styles.coordField]}
+          placeholderTextColor="#999"
+        />
+      </View>
       <GenderSwitch isFemale={isFemale} onValueChange={setIsFemale} />
       <HorizontalBreak/>
       <Button mode="contained" onPress={handleCreateChart}>
@@ -102,5 +120,23 @@ const styles = StyleSheet.create({
   container: {
     padding: 20,
     justifyContent: 'center',
+  },
+  coordRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 15,
+  },
+  input: {
+    height: 50,
+    borderColor: '#4A90E2',
+    borderWidth: 1,
+    borderRadius: 8,
+    paddingHorizontal: 15,
+    fontSize: 16,
+    backgroundColor: '#fff',
+  },
+  coordField: {
+    flex: 1,
+    marginHorizontal: 5,
   },
 });
