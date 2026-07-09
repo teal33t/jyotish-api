@@ -7,33 +7,33 @@ import BirthDateInput from '../components/birthDateInput';
 import BirthTimeInput from '../components/birthTimeInput';
 import BirthPlaceInput from '../components/birthPlaceInput';
 import GenderSwitch from '../components/genderSwitch';
-
-type NewKundliProps = {
-  onCreateChart?: () => void;
-};
+import { useKundliStore } from '../store/kundliStore';
+import { NewKundliProps } from '../utils/newKundliPage';
+import { newKundliPageStyles as styles } from "../custom-styles/newKundliPageStyes";
 
 export default function NewKundli({ onCreateChart }: NewKundliProps) {
-  const [inputValue, setInputValue] = useState('');
-  const [date, setDate] = useState(new Date());
-  const [day, setDay] = useState('');
-  const [month, setMonth] = useState('');
-  const [year, setYear] = useState('');
-  const [hour, setHour] = useState('');
-  const [minute, setMinute] = useState('');
-  const [birthPlace, setBirthPlace] = useState('');
-  const [isFemale, setIsFemale] = useState("Male");
+  const {
+    name,
+    day,
+    month,
+    year,
+    hour,
+    minute,
+    birthPlace,
+    isFemale,
+    setName,
+    setDay,
+    setMonth,
+    setYear,
+    setHour,
+    setMinute,
+    setBirthPlace,
+    setIsFemale,
+  } = useKundliStore();
+
   const [showErrors, setShowErrors] = useState(false);
 
-  const updateDate = (nextDay: string, nextMonth: string, nextYear: string) => {
-    const d = parseInt(nextDay, 10);
-    const m = parseInt(nextMonth, 10);
-    const y = parseInt(nextYear, 10);
-    if (d && m && y) {
-      setDate(new Date(y, m - 1, d));
-    }
-  };
-
-  const nameError = inputValue.trim() === '';
+  const nameError = name.trim() === '';
   const dateError = day === '' || month === '' || year === '';
   const timeError = hour === '' || minute === '';
   const birthPlaceError = birthPlace.trim() === '';
@@ -44,32 +44,35 @@ export default function NewKundli({ onCreateChart }: NewKundliProps) {
       setShowErrors(true);
       return;
     }
+
+    console.log('\n\n\nCreating chart with data:', {
+      name,
+      day,
+      month,
+      year,
+      hour,
+      minute,
+      birthPlace,
+      isFemale,
+    });
+
     onCreateChart?.();
   };
 
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
       <NameInput
-        value={inputValue}
-        onChangeText={setInputValue}
+        value={name}
+        onChangeText={setName}
         error={showErrors && nameError}
       />
       <BirthDateInput
         day={day}
         month={month}
         year={year}
-        onChangeDay={(text) => {
-          setDay(text);
-          updateDate(text, month, year);
-        }}
-        onChangeMonth={(text) => {
-          setMonth(text);
-          updateDate(day, text, year);
-        }}
-        onChangeYear={(text) => {
-          setYear(text);
-          updateDate(day, month, text);
-        }}
+        onChangeDay={setDay}
+        onChangeMonth={setMonth}
+        onChangeYear={setYear}
         error={showErrors && dateError}
       />
       <BirthTimeInput
@@ -82,25 +85,15 @@ export default function NewKundli({ onCreateChart }: NewKundliProps) {
       <BirthPlaceInput
         value={birthPlace}
         onChangeText={setBirthPlace}
-        onSearchPress={() => {}}
+        onSearchPress={() => { }}
         error={showErrors && birthPlaceError}
       />
-      
+
       <GenderSwitch isFemale={isFemale} onValueChange={setIsFemale} />
-      <HorizontalBreak/>
+      <HorizontalBreak />
       <Button mode="contained" onPress={handleCreateChart}>
         Create Birth Chart
       </Button>
     </ScrollView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-  content: {
-    padding: 20,
-  },
-});

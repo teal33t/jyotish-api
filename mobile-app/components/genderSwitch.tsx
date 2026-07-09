@@ -2,13 +2,8 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { Switch } from 'react-native-paper';
 import { SegmentedButtons } from 'react-native-paper';
-
-// const [value, setValue] = useState('Male');
-
-type GenderSwitchProps = {
-  isFemale: string;
-  onValueChange: (isFemale: string) => void;
-};
+import { genderSwitchStyles as styles } from '../custom-styles/genderSwitchStyles';
+import { GenderSwitchProps } from "../utils/componentTypes";
 
 const GenderSwitch = ({ isFemale, onValueChange }: GenderSwitchProps) => {
   return (
@@ -37,20 +32,5 @@ const GenderSwitch = ({ isFemale, onValueChange }: GenderSwitchProps) => {
   );
 };
 
-const styles = StyleSheet.create({
-  label: {
-    fontSize: 11,
-    marginBottom: 5,
-    fontWeight: 'bold',
-  },
-  row: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  option: {
-    fontSize: 13,
-    marginHorizontal: 10,
-  },
-});
 
 export default GenderSwitch;

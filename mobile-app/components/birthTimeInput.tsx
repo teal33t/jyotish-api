@@ -2,14 +2,8 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import { HelperText } from 'react-native-paper';
-
-type BirthTimeInputProps = {
-  hour: string;
-  minute: string;
-  onChangeHour: (hour: string) => void;
-  onChangeMinute: (minute: string) => void;
-  error?: boolean;
-};
+import { birthTimeInputStyles as styles } from '../custom-styles/birthTimeInputStyles';
+import { BirthTimeInputProps } from '../utils/componentTypes';
 
 const range = (start: number, end: number) =>
   Array.from({ length: end - start + 1 }, (_, i) => String(start + i).padStart(2, '0'));
@@ -60,31 +54,5 @@ const BirthTimeInput = ({
   );
 };
 
-const styles = StyleSheet.create({
-  label: {
-    fontSize: 11,
-    marginBottom: 5,
-    fontWeight: 'bold',
-  },
-  row: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-  pickerWrapper: {
-    borderColor: '#4A90E2',
-    borderWidth: 1,
-    borderRadius: 8,
-    backgroundColor: '#fff',
-    justifyContent: 'center',
-    overflow: 'hidden',
-  },
-  pickerWrapperError: {
-    borderColor: '#B00020',
-  },
-  timeField: {
-    flex: 1,
-    marginRight: 10,
-  },
-});
 
 export default BirthTimeInput;

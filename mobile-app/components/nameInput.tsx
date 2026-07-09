@@ -1,12 +1,8 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { TextInput, HelperText } from 'react-native-paper';
-
-type NameInputProps = {
-  value: string;
-  onChangeText: (text: string) => void;
-  error?: boolean;
-};
+import { nameInputStyles as styles } from '../custom-styles/nameInputStyles';
+import { NameInputProps } from '../utils/componentTypes';
 
 const NameInput = ({ value, onChangeText, error }: NameInputProps) => {
   return (
@@ -29,21 +25,5 @@ const NameInput = ({ value, onChangeText, error }: NameInputProps) => {
   );
 };
 
-const styles = StyleSheet.create({
-  label: {
-    fontSize: 11,
-    marginBottom: 5,
-    fontWeight: 'bold',
-  },
-  input: {
-    height: 50,
-    borderColor: '#4A90E2',
-    borderWidth: 1,
-    borderRadius: 8,
-    paddingHorizontal: 15,
-    fontSize: 16,
-    backgroundColor: '#fff',
-  },
-});
 
 export default NameInput;

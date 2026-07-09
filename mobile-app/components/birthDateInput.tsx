@@ -2,16 +2,8 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import { HelperText } from 'react-native-paper';
-
-type BirthDateInputProps = {
-  day: string;
-  month: string;
-  year: string;
-  onChangeDay: (day: string) => void;
-  onChangeMonth: (month: string) => void;
-  onChangeYear: (year: string) => void;
-  error?: boolean;
-};
+import { birthDateInputStyles as styles } from '../custom-styles/birthDateInputStyles';
+import { BirthDateInputProps } from '../utils/componentTypes';
 
 const range = (start: number, end: number) =>
   Array.from({ length: end - start + 1 }, (_, i) => String(start + i));
@@ -77,31 +69,6 @@ const BirthDateInput = ({
   );
 };
 
-const styles = StyleSheet.create({
-  label: {
-    fontSize: 11,
-    marginBottom: 5,
-    fontWeight: 'bold',
-  },
-  row: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-  pickerWrapper: {
-    borderColor: '#4A90E2',
-    borderWidth: 1,
-    borderRadius: 8,
-    backgroundColor: '#fff',
-    justifyContent: 'center',
-    overflow: 'hidden',
-  },
-  pickerWrapperError: {
-    borderColor: '#B00020',
-  },
-  dateField: {
-    flex: 1,
-    marginRight: 10,
-  },
-});
+
 
 export default BirthDateInput;

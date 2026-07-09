@@ -2,65 +2,10 @@ import React from 'react';
 import { View, StyleSheet, ActivityIndicator, Dimensions } from 'react-native';
 import DrawChart from '../components/drawChart';
 import HttpService from '../services/httpService';
-
+import { formatChartData, ChartResponse, fallbackChartData, isChartData } from '../utils/chartPage';
 const { width } = Dimensions.get('window');
 
 const apiService = new HttpService('http://192.168.1.10:9393');
-
-const fallbackChartData: Record<number, { rashi: string; planets: string[] }> = {
-  // 1: { rashi: '2', planets: ['Asc', 'Ma'] },
-  // 2: { rashi: '3', planets: ['Su', 'Me', 'Ve'] },
-  // 3: { rashi: '4', planets: ['Rahu'] },
-  // 4: { rashi: '5', planets: [] },
-  // 5: { rashi: '6', planets: ['Sa', 'Ju'] },
-  // 6: { rashi: '7', planets: [] },
-  // 7: { rashi: '8', planets: ['Mo'] },
-  // 8: { rashi: '9', planets: [] },
-  // 9: { rashi: '10', planets: ['Ketu'] },
-  // 10: { rashi: '11', planets: [] },
-  // 11: { rashi: '12', planets: [] },
-  // 12: { rashi: '1', planets: [] },
-};
-
-type ChartResponse = {
-  chart?: Record<number, { rashi: string; planets: string[] }>;
-};
-
-const isChartData = (
-  value: unknown
-): value is Record<number, { rashi: string; planets: string[] }> => {
-  if (!value || typeof value !== 'object') return false;
-  return Object.values(value as object).every(
-    (v) =>
-      v &&
-      typeof v === 'object' &&
-      'rashi' in v &&
-      'planets' in v &&
-      Array.isArray((v as { planets: unknown }).planets)
-  );
-};
-
-const formatChartData = (
-  chart: any
-): Record<number, { rashi: string; planets: string[] }> => {
-  const formattedData: Record<number, { rashi: string; planets: string[] }> = {};
-  const houses = chart['houses'];
-  const lagna = chart['lagna']['Lg'];
-  const startAsc = parseInt(lagna['rashi']);
-  
-  Object.keys(houses).forEach((house) => {
-    const houseData = houses[house];
-    const planets = Object.keys(houseData["graha"])
-    const rashi = (startAsc + (parseInt(house) - 1))
-    formattedData[parseInt(house)] = {
-        rashi: String(rashi > 12 ? rashi - 12 : rashi),
-        planets: planets
-    }
-    // console.log("house " + house + " planets:",     planets);
-});
-
-  return formattedData;
-}
 
 export default function Chart() {
   const [chartData, setChartData] = React.useState<
@@ -95,9 +40,9 @@ export default function Chart() {
           setChartData(formattedData);
           console.log('Chart data fetched successfully:', formattedData);
         }
-  
+
         if (!cancelled) setLoading(false);
-        
+
         // console.log('Fetching chart data:', response.data);
       } catch (error) {
         console.log('Error fetching chart data:', error);

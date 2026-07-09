@@ -3,22 +3,8 @@ import { View, Text, StyleSheet } from 'react-native';
 import { TextInput, IconButton, HelperText } from 'react-native-paper';
 import SelectDialog from './SelectDialog';
 import HttpService from '../services/httpService';
-
-type BirthPlaceInputProps = {
-  value: string;
-  onChangeText: (text: string) => void;
-  onSearchPress: () => void;
-  error?: boolean;
-};
-
-type PlaceApiResponse = {
-  place_id: number;
-  display_name: string;
-  lat: string;
-  lon: string;
-};
-
-type PlaceOption = { label: string; value: string, latitude: string; longitude: string };
+import { birthPlaceInputStyles as styles } from '../custom-styles/birthPlaceInputStyles';
+import { BirthPlaceInputProps, PlaceOption, PlaceApiResponse } from '../utils/componentTypes';
 
 const nominatimService = new HttpService('https://nominatim.openstreetmap.org');
 
@@ -140,7 +126,7 @@ const BirthPlaceInput = ({ value, onChangeText, onSearchPress, error }: BirthPla
         selectedValue={selectedPlace}
         loading={loading}
         onClose={() => setModalVisible(false)}
-        onSelect={(value) => {
+        onSelect={(value: any) => {
           const place = placeOptions.find((p) => p.value === value);
           setSelectedPlace(value);
           setLatitude(place?.latitude || '');
@@ -152,43 +138,5 @@ const BirthPlaceInput = ({ value, onChangeText, onSearchPress, error }: BirthPla
   );
 };
 
-const styles = StyleSheet.create({
-  label: {
-    fontSize: 11,
-    marginBottom: 5,
-    fontWeight: 'bold',
-  },
-  row: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  input: {
-    height: 50,
-    borderColor: '#4A90E2',
-    borderWidth: 1,
-    borderRadius: 8,
-    paddingHorizontal: 15,
-    fontSize: 16,
-    backgroundColor: '#fff',
-  },
-  textField: {
-    flex: 1,
-  },
-  searchButton: {
-    marginLeft: 10,
-  },
-  coordField: {
-    borderStyle: 'dashed',
-    fontSize: 10,
-    flex: 1,
-    marginHorizontal: 5,
-  },
-  coordRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginTop: 15,
-  },
-
-});
 
 export default BirthPlaceInput;

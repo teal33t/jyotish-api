@@ -4,15 +4,12 @@ import { TabView, SceneRendererProps } from 'react-native-tab-view';
 import SavedKundalis from './SavedKundalis';
 import NewKundli from './NewKundli';
 import Chart from './chart';
+import { CreateKundliProps } from "../utils/createKundliPage";
 
 const routes = [
   { key: 'saved', title: 'Saved Kundali`s' },
   { key: 'new', title: 'New Kundli' },
 ];
-
-type CreateKundliProps = {
-  onNavigateToView?: () => void;
-};
 
 export default function CreateKundli({ onNavigateToView }: CreateKundliProps) {
   const layout = useWindowDimensions();

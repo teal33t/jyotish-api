@@ -1,6 +1,8 @@
 import React from 'react';
 import { View, StyleSheet, Dimensions } from 'react-native';
 import Svg, { Line, Text } from 'react-native-svg';
+import { drawChartStyles as styles } from '../custom-styles/drawChartStyles';
+import { DrawChartProps } from '../utils/componentTypes';
 
 const { width } = Dimensions.get('window');
 const CHART_SIZE = Math.min(width * 0.95, 400);
@@ -20,11 +22,6 @@ const housePositions: any = {
   12: { rx: CHART_SIZE * 0.72,  ry: CHART_SIZE * 0.14, px: CHART_SIZE * 0.78,  py: CHART_SIZE * 0.08 },
 };
 
-type ChartData = Record<number, { rashi: string; planets: string[] }>;
-
-type DrawChartProps = {
-  chartData: ChartData;
-};
 
 const DrawChart = ({ chartData }: DrawChartProps) => {
   return (
@@ -67,8 +64,5 @@ const DrawChart = ({ chartData }: DrawChartProps) => {
   );
 };
 
-const styles = StyleSheet.create({
-  container: { flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#fff' },
-});
 
 export default DrawChart;

@@ -1,23 +1,14 @@
 import React, { useState } from 'react';
-import { 
-  Modal, 
-  StyleSheet, 
-  Text, 
-  TouchableOpacity, 
-  View, 
+import {
+  Modal,
+  Text,
+  TouchableOpacity,
+  View,
   FlatList,
-  ActivityIndicator 
+  ActivityIndicator
 } from 'react-native';
-
-interface SelectDialogProps {
-  visible: boolean;
-  title: string;
-  options: { label: string; value: string }[];
-  selectedValue: string;
-  loading?: boolean;
-  onClose: () => void;
-  onSelect: (value: string) => void;
-}
+import { selectDialogStyles as styles } from '../custom-styles/selectDialogStyles';
+import { SelectDialogProps } from '../utils/componentTypes';
 
 export default function SelectDialog({
   visible,
@@ -45,7 +36,7 @@ export default function SelectDialog({
       <View style={styles.overlay}>
         <View style={styles.dialogBox}>
           <Text style={styles.title}>{title}</Text>
-          
+
           {/* List of selectable options */}
           {loading ? (
             <View style={styles.loadingContainer}>
@@ -86,88 +77,3 @@ export default function SelectDialog({
     </Modal>
   );
 }
-
-const styles = StyleSheet.create({
-  overlay: {
-    flex: 1,
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  dialogBox: {
-    width: '85%',
-    backgroundColor: '#fff',
-    borderRadius: 12,
-    padding: 20,
-    maxHeight: '70%',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5,
-  },
-  title: {
-    fontSize: 14,
-    fontWeight: 'bold',
-    marginBottom: 15,
-    color: '#333',
-  },
-  optionRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    paddingVertical: 12,
-    paddingHorizontal: 10,
-    borderRadius: 6,
-    marginVertical: 4,
-  },
-  selectedRow: {
-    backgroundColor: '#f0f4ff',
-  },
-  optionText: {
-    fontSize: 10,
-    color: '#444',
-  },
-  selectedText: {
-    color: '#007AFF',
-    fontWeight: '600',
-  },
-  radioButton: {
-    height: 20,
-    width: 20,
-    borderRadius: 10,
-    borderWidth: 2,
-    borderColor: '#ccc',
-  },
-  radioChecked: {
-    borderColor: '#007AFF',
-    backgroundColor: '#007AFF',
-  },
-  buttonContainer: {
-    flexDirection: 'row',
-    justifyContent: 'flex-end',
-    marginTop: 20,
-    gap: 10,
-  },
-  button: {
-    paddingVertical: 10,
-    paddingHorizontal: 15,
-    borderRadius: 6,
-  },
-  confirmButton: {
-    backgroundColor: '#007AFF',
-  },
-  buttonCancelText: {
-    color: '#666',
-    fontWeight: '600',
-  },
-  buttonConfirmText: {
-    color: '#fff',
-    fontWeight: '600',
-  },
-  loadingContainer: {
-    paddingVertical: 30,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
