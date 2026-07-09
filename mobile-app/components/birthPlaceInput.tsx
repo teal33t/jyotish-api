@@ -18,7 +18,7 @@ type PlaceApiResponse = {
   lon: string;
 };
 
-type PlaceOption = { label: string; value: string };
+type PlaceOption = { label: string; value: string, latitude: string; longitude: string };
 
 const nominatimService = new HttpService('https://nominatim.openstreetmap.org');
 
@@ -62,9 +62,12 @@ const BirthPlaceInput = ({ value, onChangeText, onSearchPress, error }: BirthPla
         const formattedOptions = response.data.map((place) => ({
           label: place.display_name,
           value: String(place.place_id),
+          latitude: place.lat,
+          longitude: place.lon,
         }));
         console.log('Fetched places:', formattedOptions);
         setPlaceOptions(formattedOptions);
+
       } else {
         console.log('Place API error, status:', response.status, response.data);
       }
@@ -97,11 +100,11 @@ const BirthPlaceInput = ({ value, onChangeText, onSearchPress, error }: BirthPla
           style={styles.searchButton}
           onPress={handleSearchPress}
         />
-    
+
 
       </View>
       <View style={styles.coordRow}>
-<TextInput
+        <TextInput
           label="Latitude"
           mode="flat"
           placeholder="Latitude"
@@ -121,7 +124,7 @@ const BirthPlaceInput = ({ value, onChangeText, onSearchPress, error }: BirthPla
         />
 
       </View>
-    
+
 
 
       <HelperText type="error" visible={!!error}>
@@ -140,6 +143,8 @@ const BirthPlaceInput = ({ value, onChangeText, onSearchPress, error }: BirthPla
         onSelect={(value) => {
           const place = placeOptions.find((p) => p.value === value);
           setSelectedPlace(value);
+          setLatitude(place?.latitude || '');
+          setLongitude(place?.longitude || '');
           onChangeText(place?.label ?? value);
         }}
       />
@@ -149,8 +154,8 @@ const BirthPlaceInput = ({ value, onChangeText, onSearchPress, error }: BirthPla
 
 const styles = StyleSheet.create({
   label: {
-    fontSize: 16,
-    marginBottom: 8,
+    fontSize: 11,
+    marginBottom: 5,
     fontWeight: 'bold',
   },
   row: {
@@ -178,7 +183,7 @@ const styles = StyleSheet.create({
     flex: 1,
     marginHorizontal: 5,
   },
-    coordRow: {
+  coordRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginTop: 15,

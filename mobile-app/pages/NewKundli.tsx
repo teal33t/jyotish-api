@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, ScrollView, StyleSheet } from 'react-native';
 import { Button, TextInput } from 'react-native-paper';
 import HorizontalBreak from '../components/horizontalBreak';
 import NameInput from '../components/nameInput';
@@ -48,7 +48,7 @@ export default function NewKundli({ onCreateChart }: NewKundliProps) {
   };
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container} contentContainerStyle={styles.content}>
       <NameInput
         value={inputValue}
         onChangeText={setInputValue}
@@ -91,23 +91,16 @@ export default function NewKundli({ onCreateChart }: NewKundliProps) {
       <Button mode="contained" onPress={handleCreateChart}>
         Create Birth Chart
       </Button>
-    </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    padding: 20,
-    justifyContent: 'center',
-  },
-  input: {
-    height: 50,
-    borderColor: '#4A90E2',
-    borderWidth: 1,
-    borderRadius: 8,
-    paddingHorizontal: 15,
-    fontSize: 16,
+    flex: 1,
     backgroundColor: '#fff',
   },
-  
+  content: {
+    padding: 20,
+  },
 });

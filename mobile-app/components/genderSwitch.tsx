@@ -39,8 +39,8 @@ const GenderSwitch = ({ isFemale, onValueChange }: GenderSwitchProps) => {
 
 const styles = StyleSheet.create({
   label: {
-    fontSize: 16,
-    marginBottom: 8,
+    fontSize: 11,
+    marginBottom: 5,
     fontWeight: 'bold',
   },
   row: {
@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   option: {
-    fontSize: 16,
+    fontSize: 13,
     marginHorizontal: 10,
   },
 });

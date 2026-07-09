@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   title: {
-    fontSize: 18,
+    fontSize: 14,
     fontWeight: 'bold',
     marginBottom: 15,
     color: '#333',
@@ -125,7 +125,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#f0f4ff',
   },
   optionText: {
-    fontSize: 16,
+    fontSize: 10,
     color: '#444',
   },
   selectedText: {

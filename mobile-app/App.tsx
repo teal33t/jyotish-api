@@ -20,6 +20,7 @@ const styles = StyleSheet.create({
   base: {
     flex: 1,
     marginTop: Constants.statusBarHeight,
+    marginBottom: Constants.statusBarHeight,
   },
 });
 

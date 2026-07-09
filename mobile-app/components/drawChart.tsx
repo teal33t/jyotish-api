@@ -5,7 +5,7 @@ import Svg, { Line, Text } from 'react-native-svg';
 const { width } = Dimensions.get('window');
 const CHART_SIZE = Math.min(width * 0.95, 400);
 
-const housePositions = {
+const housePositions: any = {
   1:  { rx: CHART_SIZE / 2,     ry: CHART_SIZE * 0.28, px: CHART_SIZE / 2,     py: CHART_SIZE * 0.18 }, 
   2:  { rx: CHART_SIZE * 0.28,  ry: CHART_SIZE * 0.14, px: CHART_SIZE * 0.22,  py: CHART_SIZE * 0.08 },
   3:  { rx: CHART_SIZE * 0.14,  ry: CHART_SIZE * 0.28, px: CHART_SIZE * 0.08,  py: CHART_SIZE * 0.22 },

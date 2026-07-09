@@ -79,8 +79,8 @@ const BirthDateInput = ({
 
 const styles = StyleSheet.create({
   label: {
-    fontSize: 16,
-    marginBottom: 8,
+    fontSize: 11,
+    marginBottom: 5,
     fontWeight: 'bold',
   },
   row: {
