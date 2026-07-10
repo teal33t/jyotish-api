@@ -17,6 +17,7 @@ const BirthPlaceInput = ({ value, onChangeText, onSearchPress, error }: BirthPla
   const [queryError, setQueryError] = useState(false);
   const [latitude, setLatitude] = useState('');
   const [longitude, setLongitude] = useState('');
+  const [timeZone, setTimeZone] = useState('+5.5');
 
   const handleSearchPress = async () => {
     onSearchPress();
@@ -96,7 +97,7 @@ const BirthPlaceInput = ({ value, onChangeText, onSearchPress, error }: BirthPla
           placeholder="Latitude"
           value={latitude}
           onChangeText={setLatitude}
-          style={[styles.input, styles.coordField]}
+          style={[styles.smallinput, styles.coordField]}
           placeholderTextColor="#999"
         />
         <TextInput
@@ -105,11 +106,12 @@ const BirthPlaceInput = ({ value, onChangeText, onSearchPress, error }: BirthPla
           placeholder="Longitude"
           value={longitude}
           onChangeText={setLongitude}
-          style={[styles.input, styles.coordField]}
+          style={[styles.smallinput, styles.coordField]}
           placeholderTextColor="#999"
         />
 
       </View>
+      <Text style={styles.timezoneLabel}>Time Zone : {timeZone}</Text>
 
 
 

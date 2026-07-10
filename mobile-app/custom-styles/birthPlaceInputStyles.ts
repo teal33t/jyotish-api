@@ -7,10 +7,31 @@ export const birthPlaceInputStyles = StyleSheet.create({
         fontSize: 11,
         marginBottom: 5,
         fontWeight: 'bold',
+        
+    },
+    timezoneLabel: {
+        fontSize: 11,
+        marginTop: 5,
+        fontWeight: 'bold',
     },
     row: {
         flexDirection: 'row',
         alignItems: 'center',
+    },
+    smallinput: {
+        // 1. Explicitly expand the sizing
+        width: '100%',
+        height: 48, // Recommended minimum touch target size
+
+        // 2. Strip default platform paddings causing shrinkage
+        paddingVertical: 0,
+        paddingHorizontal: 12,
+
+        // 3. Make it visible for verification
+        borderWidth: 1,
+        borderColor: '#ccc',
+        borderRadius: 8,
+        fontSize: 11,
     },
     input: {
         height: 50,

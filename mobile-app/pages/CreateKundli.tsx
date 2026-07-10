@@ -37,6 +37,7 @@ export default function CreateKundli({ onNavigateToView }: CreateKundliProps) {
       renderScene={renderScene}
       onIndexChange={setIndex}
       initialLayout={{ width: layout.width }}
+      swipeEnabled={false}
     />
   );
 }
