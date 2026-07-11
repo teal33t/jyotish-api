@@ -1,0 +1,61 @@
+[
+    {
+        "place_id": 247204467,
+        "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+        "osm_type": "relation",
+        "osm_id": 1985898,
+        "lat": "21.1305215",
+        "lon": "74.4900614",
+        "class": "boundary",
+        "type": "administrative",
+        "place_rank": 10,
+        "importance": 0.5085156959641381,
+        "addresstype": "state_district",
+        "name": "Dhule District",
+        "display_name": "Dhule District, Maharashtra, India",
+        "address": {
+            "state_district": "Dhule District",
+            "state": "Maharashtra",
+            "ISO3166-2-lvl4": "IN-MH",
+            "country": "India",
+            "country_code": "in"
+        },
+        "boundingbox": [
+            "20.6273622",
+            "21.6344550",
+            "73.8507414",
+            "75.2065577"
+        ]
+    },
+    {
+        "place_id": 247580593,
+        "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+        "osm_type": "node",
+        "osm_id": 245691673,
+        "lat": "20.8980000",
+        "lon": "74.7732000",
+        "class": "place",
+        "type": "city",
+        "place_rank": 16,
+        "importance": 0.42790132098722905,
+        "addresstype": "city",
+        "name": "Dhule",
+        "display_name": "Dhule, Dhule Taluka, Dhule District, Maharashtra, 424001, India",
+        "address": {
+            "city": "Dhule",
+            "county": "Dhule Taluka",
+            "state_district": "Dhule District",
+            "state": "Maharashtra",
+            "ISO3166-2-lvl4": "IN-MH",
+            "postcode": "424001",
+            "country": "India",
+            "country_code": "in"
+        },
+        "boundingbox": [
+            "20.7380000",
+            "21.0580000",
+            "74.6132000",
+            "74.9332000"
+        ]
+    }
+]
