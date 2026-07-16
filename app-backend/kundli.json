@@ -1,0 +1,1347 @@
+{
+    "chart": {
+        "user": {
+            "datetime": "1981-06-15 04:29:00",
+            "timezone": "+05:30",
+            "longitude": 74.7732,
+            "latitude": 20.898,
+            "altitude": 0
+        },
+        "graha": {
+            "Su": {
+                "longitude": 60.1732332,
+                "latitude": 0.0001817,
+                "speed": 0.954757,
+                "ascension": 83.2158666,
+                "declination": 23.2952924,
+                "rashi": 3,
+                "degree": 0.17323319999999853,
+                "nakshatra": {
+                    "anga": "nakshatra",
+                    "key": 5,
+                    "ratio": 1,
+                    "abhijit": false,
+                    "left": 48.70075100000003,
+                    "name": "Mrigashirsha",
+                    "pada": 3
+                },
+                "astangata": null,
+                "rashiAvastha": "neutral",
+                "vargottama": false,
+                "yuddha": null,
+                "gocharastha": 0,
+                "bhavaCharacter": "mishra",
+                "tempRelation": {
+                    "Mo": -1,
+                    "Ma": 1,
+                    "Me": -1,
+                    "Ju": 1,
+                    "Ve": -1,
+                    "Sa": 1,
+                    "Ra": 1,
+                    "Ke": -1
+                },
+                "relation": {
+                    "Mo": 0,
+                    "Ma": 2,
+                    "Me": -1,
+                    "Ju": 2,
+                    "Ve": -2,
+                    "Sa": 0,
+                    "Ra": 0,
+                    "Ke": -2,
+                    "Su": null
+                },
+                "yogakaraka": false,
+                "mrityu": false,
+                "pushkaraNavamsha": 0,
+                "pushkaraBhaga": false,
+                "avastha": {
+                    "baladi": "bala",
+                    "jagradi": "swapna",
+                    "deeptadi": [
+                        "dina"
+                    ]
+                },
+                "dispositor": "Me"
+            },
+            "Mo": {
+                "longitude": 210.6817108,
+                "latitude": 4.7851551,
+                "speed": 11.8931578,
+                "ascension": 233.1206132,
+                "declination": -14.2005552,
+                "rashi": 8,
+                "degree": 0.6817107999999905,
+                "nakshatra": {
+                    "anga": "nakshatra",
+                    "key": 16,
+                    "ratio": 1,
+                    "abhijit": false,
+                    "left": 19.887169000000142,
+                    "name": "Vishakha",
+                    "pada": 4
+                },
+                "astangata": false,
+                "rashiAvastha": "neecha",
+                "vargottama": false,
+                "yuddha": null,
+                "gocharastha": -1,
+                "bhavaCharacter": "papa",
+                "tempRelation": {
+                    "Su": -1,
+                    "Ma": -1,
+                    "Me": -1,
+                    "Ju": 1,
+                    "Ve": -1,
+                    "Sa": 1,
+                    "Ra": -1,
+                    "Ke": 1
+                },
+                "relation": {
+                    "Su": 0,
+                    "Ma": -1,
+                    "Me": 0,
+                    "Ju": 1,
+                    "Ve": -1,
+                    "Sa": 1,
+                    "Ra": -2,
+                    "Ke": 0,
+                    "Mo": null
+                },
+                "yogakaraka": false,
+                "mrityu": false,
+                "pushkaraNavamsha": 4,
+                "pushkaraBhaga": false,
+                "avastha": {
+                    "baladi": "mrita",
+                    "jagradi": "sushupta",
+                    "deeptadi": [
+                        "dina"
+                    ]
+                },
+                "dispositor": "Ma"
+            },
+            "Ma": {
+                "longitude": 43.3182516,
+                "latitude": 0.1198871,
+                "speed": 0.7058026,
+                "ascension": 65.061527,
+                "declination": 21.5850818,
+                "rashi": 2,
+                "degree": 13.318251600000004,
+                "nakshatra": {
+                    "anga": "nakshatra",
+                    "key": 4,
+                    "ratio": 1,
+                    "abhijit": false,
+                    "left": 75.11311299999998,
+                    "name": "Rohini",
+                    "pada": 1
+                },
+                "astangata": false,
+                "rashiAvastha": "neutral",
+                "vargottama": false,
+                "yuddha": false,
+                "gocharastha": 0,
+                "bhavaCharacter": "papa",
+                "tempRelation": {
+                    "Su": 1,
+                    "Mo": -1,
+                    "Me": 1,
+                    "Ju": -1,
+                    "Ve": 1,
+                    "Sa": -1,
+                    "Ra": 1,
+                    "Ke": -1
+                },
+                "relation": {
+                    "Su": 2,
+                    "Mo": 0,
+                    "Me": 0,
+                    "Ju": 0,
+                    "Ve": 1,
+                    "Sa": -1,
+                    "Ra": 0,
+                    "Ke": 0,
+                    "Ma": null
+                },
+                "yogakaraka": false,
+                "mrityu": false,
+                "pushkaraNavamsha": 0,
+                "pushkaraBhaga": 0.6817483999999965,
+                "avastha": {
+                    "baladi": "yuva",
+                    "jagradi": "swapna",
+                    "deeptadi": [
+                        "dina"
+                    ]
+                },
+                "dispositor": "Ve"
+            },
+            "Me": {
+                "longitude": 70.5499334,
+                "latitude": -2.2312466,
+                "speed": -0.3723524,
+                "ascension": 94.4445895,
+                "declination": 21.1464669,
+                "rashi": 3,
+                "degree": 10.5499334,
+                "nakshatra": {
+                    "anga": "nakshatra",
+                    "key": 6,
+                    "ratio": 1,
+                    "abhijit": false,
+                    "left": 70.87549950000002,
+                    "name": "Ardra",
+                    "pada": 2
+                },
+                "astangata": false,
+                "rashiAvastha": "swa",
+                "vargottama": false,
+                "yuddha": false,
+                "gocharastha": 1,
+                "bhavaCharacter": "shubha",
+                "tempRelation": {
+                    "Su": -1,
+                    "Mo": -1,
+                    "Ma": 1,
+                    "Ju": 1,
+                    "Ve": -1,
+                    "Sa": 1,
+                    "Ra": 1,
+                    "Ke": -1
+                },
+                "relation": {
+                    "Su": 0,
+                    "Mo": -2,
+                    "Ma": 1,
+                    "Ju": 1,
+                    "Ve": 0,
+                    "Sa": 1,
+                    "Ra": 2,
+                    "Ke": 0,
+                    "Me": null
+                },
+                "yogakaraka": false,
+                "mrityu": false,
+                "pushkaraNavamsha": 0,
+                "pushkaraBhaga": false,
+                "avastha": {
+                    "baladi": "kumara",
+                    "jagradi": "jagrata",
+                    "deeptadi": [
+                        "swastha",
+                        "vikala"
+                    ]
+                },
+                "dispositor": "Me"
+            },
+            "Ju": {
+                "longitude": 157.3434278,
+                "latitude": 1.360596,
+                "speed": 0.0533114,
+                "ascension": 181.4049382,
+                "declination": 0.8738356,
+                "rashi": 6,
+                "degree": 7.343427800000001,
+                "nakshatra": {
+                    "anga": "nakshatra",
+                    "key": 12,
+                    "ratio": 1,
+                    "abhijit": false,
+                    "left": 19.924291500000045,
+                    "name": "Uttara Phalguni",
+                    "pada": 4
+                },
+                "astangata": false,
+                "rashiAvastha": "enemy",
+                "vargottama": false,
+                "yuddha": false,
+                "gocharastha": 0,
+                "bhavaCharacter": "papa",
+                "tempRelation": {
+                    "Su": 1,
+                    "Mo": 1,
+                    "Ma": -1,
+                    "Me": 1,
+                    "Ve": 1,
+                    "Sa": -1,
+                    "Ra": 1,
+                    "Ke": -1
+                },
+                "relation": {
+                    "Su": 2,
+                    "Mo": 2,
+                    "Ma": 0,
+                    "Me": 0,
+                    "Ve": 0,
+                    "Sa": -1,
+                    "Ra": 1,
+                    "Ke": -1,
+                    "Ju": null
+                },
+                "yogakaraka": false,
+                "mrityu": false,
+                "pushkaraNavamsha": 12,
+                "pushkaraBhaga": false,
+                "avastha": {
+                    "baladi": "vridha",
+                    "jagradi": "sushupta",
+                    "deeptadi": [
+                        "dukhita",
+                        "vikala"
+                    ]
+                },
+                "dispositor": "Me"
+            },
+            "Ve": {
+                "longitude": 78.2519801,
+                "latitude": 1.1835673,
+                "speed": 1.2213321,
+                "ascension": 102.9967771,
+                "declination": 24.0921542,
+                "rashi": 3,
+                "degree": 18.251980099999997,
+                "nakshatra": {
+                    "anga": "nakshatra",
+                    "key": 6,
+                    "ratio": 1,
+                    "abhijit": false,
+                    "left": 13.110149250000045,
+                    "name": "Ardra",
+                    "pada": 4
+                },
+                "astangata": false,
+                "rashiAvastha": "friend",
+                "vargottama": false,
+                "yuddha": false,
+                "gocharastha": 0,
+                "bhavaCharacter": "shubha",
+                "tempRelation": {
+                    "Su": -1,
+                    "Mo": -1,
+                    "Ma": 1,
+                    "Me": -1,
+                    "Ju": 1,
+                    "Sa": 1,
+                    "Ra": 1,
+                    "Ke": -1
+                },
+                "relation": {
+                    "Su": -2,
+                    "Mo": -2,
+                    "Ma": 1,
+                    "Me": 0,
+                    "Ju": 1,
+                    "Sa": 2,
+                    "Ra": 2,
+                    "Ke": 0,
+                    "Ve": null
+                },
+                "yogakaraka": false,
+                "mrityu": false,
+                "pushkaraNavamsha": 12,
+                "pushkaraBhaga": 0.25198009999999726,
+                "avastha": {
+                    "baladi": "vridha",
+                    "jagradi": "swapna",
+                    "deeptadi": [
+                        "shanta",
+                        "vikala"
+                    ]
+                },
+                "dispositor": "Me"
+            },
+            "Sa": {
+                "longitude": 159.4845555,
+                "latitude": 2.4638307,
+                "speed": 0.0166278,
+                "ascension": 183.8074051,
+                "declination": 1.0352864,
+                "rashi": 6,
+                "degree": 9.484555499999999,
+                "nakshatra": {
+                    "anga": "nakshatra",
+                    "key": 12,
+                    "ratio": 1,
+                    "abhijit": false,
+                    "left": 3.8658337500000606,
+                    "name": "Uttara Phalguni",
+                    "pada": 4
+                },
+                "astangata": false,
+                "rashiAvastha": "friend",
+                "vargottama": false,
+                "yuddha": false,
+                "gocharastha": 0,
+                "bhavaCharacter": "yogakaraka",
+                "tempRelation": {
+                    "Su": 1,
+                    "Mo": 1,
+                    "Ma": -1,
+                    "Me": 1,
+                    "Ju": -1,
+                    "Ve": 1,
+                    "Ra": 1,
+                    "Ke": -1
+                },
+                "relation": {
+                    "Su": 0,
+                    "Mo": 0,
+                    "Ma": -2,
+                    "Me": 2,
+                    "Ju": -1,
+                    "Ve": 2,
+                    "Ra": 2,
+                    "Ke": -2,
+                    "Sa": null
+                },
+                "yogakaraka": true,
+                "mrityu": false,
+                "pushkaraNavamsha": 12,
+                "pushkaraBhaga": 0.48455549999999903,
+                "avastha": {
+                    "baladi": "vridha",
+                    "jagradi": "swapna",
+                    "deeptadi": [
+                        "pramudita"
+                    ]
+                },
+                "dispositor": "Me"
+            },
+            "Ra": {
+                "longitude": 98.7016161,
+                "latitude": -0,
+                "speed": -0.1177741,
+                "ascension": 124.5681131,
+                "declination": 19.649169,
+                "rashi": 4,
+                "degree": 8.701616099999995,
+                "nakshatra": {
+                    "anga": "nakshatra",
+                    "key": 8,
+                    "ratio": 1,
+                    "abhijit": false,
+                    "left": 59.73787925000006,
+                    "name": "Pushya",
+                    "pada": 2
+                },
+                "astangata": null,
+                "rashiAvastha": "enemy",
+                "vargottama": false,
+                "yuddha": null,
+                "gocharastha": 0,
+                "bhavaCharacter": "mishra",
+                "tempRelation": {
+                    "Su": 1,
+                    "Mo": -1,
+                    "Ma": 1,
+                    "Me": 1,
+                    "Ju": 1,
+                    "Ve": 1,
+                    "Sa": 1,
+                    "Ke": -1
+                },
+                "relation": {
+                    "Su": 0,
+                    "Mo": -2,
+                    "Ma": 0,
+                    "Me": 2,
+                    "Ju": 1,
+                    "Ve": 2,
+                    "Sa": 2,
+                    "Ke": -2,
+                    "Ra": null
+                },
+                "yogakaraka": false,
+                "mrityu": false,
+                "pushkaraNavamsha": 6,
+                "pushkaraBhaga": 0.7016160999999954,
+                "avastha": {
+                    "baladi": "vridha",
+                    "jagradi": "sushupta",
+                    "deeptadi": [
+                        "khala"
+                    ]
+                },
+                "dispositor": "Mo"
+            },
+            "Ke": {
+                "longitude": 278.7016161,
+                "latitude": -0,
+                "speed": -0.1177741,
+                "rashi": 10,
+                "degree": 8.701616100000024,
+                "ascension": 304.5681131,
+                "declination": 19.649169,
+                "nakshatra": {
+                    "anga": "nakshatra",
+                    "key": 21,
+                    "ratio": 1,
+                    "abhijit": false,
+                    "left": 9.737879249999915,
+                    "name": "Uttara Ashadha",
+                    "pada": 4
+                },
+                "astangata": null,
+                "rashiAvastha": "enemy",
+                "vargottama": false,
+                "yuddha": null,
+                "gocharastha": 0,
+                "bhavaCharacter": "mishra",
+                "tempRelation": {
+                    "Su": -1,
+                    "Mo": 1,
+                    "Ma": -1,
+                    "Me": -1,
+                    "Ju": -1,
+                    "Ve": -1,
+                    "Sa": -1,
+                    "Ra": -1
+                },
+                "relation": {
+                    "Su": -2,
+                    "Mo": 0,
+                    "Ma": 0,
+                    "Me": 0,
+                    "Ju": -1,
+                    "Ve": 0,
+                    "Sa": -2,
+                    "Ra": -2,
+                    "Ke": null
+                },
+                "yogakaraka": false,
+                "mrityu": false,
+                "pushkaraNavamsha": 12,
+                "pushkaraBhaga": false,
+                "avastha": {
+                    "baladi": "vridha",
+                    "jagradi": "sushupta",
+                    "deeptadi": [
+                        "khala"
+                    ]
+                },
+                "dispositor": "Sa"
+            }
+        },
+        "bhava": {
+            "1": {
+                "longitude": 39.4450404,
+                "ascension": 37.0463515,
+                "declination": 14.6401418,
+                "rashi": 2,
+                "degree": 9.445040400000003
+            },
+            "2": {
+                "longitude": 69.4450404,
+                "ascension": 67.7696151,
+                "declination": 21.8692031,
+                "rashi": 3,
+                "degree": 9.445040399999996
+            },
+            "3": {
+                "longitude": 99.4450404,
+                "ascension": 100.2773258,
+                "declination": 23.1053254,
+                "rashi": 4,
+                "degree": 9.445040399999996
+            },
+            "4": {
+                "longitude": 129.4450404,
+                "ascension": 131.8838041,
+                "declination": 17.8909849,
+                "rashi": 5,
+                "degree": 9.44504040000001
+            },
+            "5": {
+                "longitude": 159.4450404,
+                "ascension": 161.0152617,
+                "declination": 8.0290594,
+                "rashi": 6,
+                "degree": 9.44504040000001
+            },
+            "6": {
+                "longitude": 189.4450404,
+                "ascension": 188.6778842,
+                "declination": -3.7430519,
+                "rashi": 7,
+                "degree": 9.44504040000001
+            },
+            "7": {
+                "longitude": 219.4450404,
+                "ascension": 217.0463515,
+                "declination": -14.6401418,
+                "rashi": 8,
+                "degree": 9.44504040000001
+            },
+            "8": {
+                "longitude": 249.4450404,
+                "ascension": 247.7696151,
+                "declination": -21.8692031,
+                "rashi": 9,
+                "degree": 9.44504040000001
+            },
+            "9": {
+                "longitude": 279.4450404,
+                "ascension": 280.2773258,
+                "declination": -23.1053254,
+                "rashi": 10,
+                "degree": 9.445040399999982
+            },
+            "10": {
+                "longitude": 309.4450404,
+                "ascension": 311.8838041,
+                "declination": -17.8909849,
+                "rashi": 11,
+                "degree": 9.445040399999982
+            },
+            "11": {
+                "longitude": 339.4450404,
+                "ascension": 341.0152617,
+                "declination": -8.0290594,
+                "rashi": 12,
+                "degree": 9.445040399999982
+            },
+            "12": {
+                "longitude": 9.4450404,
+                "ascension": 8.6778842,
+                "declination": 3.7430519,
+                "rashi": 1,
+                "degree": 9.4450404
+            }
+        },
+        "lagna": {
+            "Lg": {
+                "longitude": 39.4450404,
+                "ascension": 37.0463515,
+                "declination": 14.6401418,
+                "rashi": 2,
+                "degree": 9.445040400000003,
+                "nakshatra": {
+                    "anga": "nakshatra",
+                    "key": 3,
+                    "ratio": 1,
+                    "abhijit": false,
+                    "left": 4.1621969999999875,
+                    "name": "Krittika",
+                    "pada": 4
+                }
+            },
+            "MLg": {
+                "longitude": 296.6723702,
+                "ascension": 298.7022057,
+                "declination": -20.8230639,
+                "rashi": 10,
+                "degree": 26.67237019999999
+            }
+        },
+        "panchanga": {
+            "tithi": {
+                "anga": "tithi",
+                "key": 13,
+                "name": "Trayodashi",
+                "paksha": "shukla",
+                "left": 45.76268666666673
+            },
+            "nakshatra": {
+                "anga": "nakshatra",
+                "key": 16,
+                "ratio": 1,
+                "abhijit": false,
+                "left": 19.887169000000142,
+                "name": "Vishakha",
+                "pada": 4
+            },
+            "yoga": {
+                "anga": "yoga",
+                "key": 21,
+                "name": "Siddha",
+                "left": 68.58792000000017
+            },
+            "vara": {
+                "anga": "vara",
+                "left": 5.855939264882881,
+                "key": "Su",
+                "week": "1",
+                "name": "Ravivar"
+            },
+            "karana": {
+                "anga": "karana",
+                "key": 4,
+                "name": "Taitila",
+                "left": 91.52537333333346
+            }
+        },
+        "rising": {
+            "Su": [
+                {
+                    "rising": "1981-06-14 05:53:12",
+                    "setting": "1981-06-14 19:08:53"
+                },
+                {
+                    "rising": "1981-06-15 05:53:20",
+                    "setting": "1981-06-15 19:09:10"
+                },
+                {
+                    "rising": "1981-06-16 05:53:28",
+                    "setting": "1981-06-16 19:09:27"
+                }
+            ]
+        },
+        "kala": {
+            "hora": {
+                "number": 24,
+                "key": "Me",
+                "interval": 3222.25,
+                "left": 0.6905112886957872,
+                "type": "yama",
+                "end": "1981-06-15 05:53:20"
+            }
+        },
+        "dasha": {
+            "nesting": 0,
+            "type": "vimshottari",
+            "key": "",
+            "duration": 3786834240,
+            "start": "1968-08-20 12:15:18",
+            "end": "2088-08-19 14:39:18",
+            "periods": {
+                "Ju": {
+                    "nesting": 1,
+                    "type": "mahadasha",
+                    "key": "Ju",
+                    "duration": 504911232,
+                    "start": "1968-08-20 12:15:18",
+                    "end": "1984-08-20 09:22:30"
+                },
+                "Sa": {
+                    "nesting": 1,
+                    "type": "mahadasha",
+                    "key": "Sa",
+                    "duration": 599582088,
+                    "start": "1984-08-20 09:22:30",
+                    "end": "2003-08-20 23:57:18"
+                },
+                "Me": {
+                    "nesting": 1,
+                    "type": "mahadasha",
+                    "key": "Me",
+                    "duration": 536468184,
+                    "start": "2003-08-20 23:57:18",
+                    "end": "2020-08-20 02:53:42"
+                },
+                "Ke": {
+                    "nesting": 1,
+                    "type": "mahadasha",
+                    "key": "Ke",
+                    "duration": 220898664,
+                    "start": "2020-08-20 02:53:42",
+                    "end": "2027-08-20 19:38:06"
+                },
+                "Ve": {
+                    "nesting": 1,
+                    "type": "mahadasha",
+                    "key": "Ve",
+                    "duration": 631139040,
+                    "start": "2027-08-20 19:38:06",
+                    "end": "2047-08-20 16:02:06"
+                },
+                "Su": {
+                    "nesting": 1,
+                    "type": "mahadasha",
+                    "key": "Su",
+                    "duration": 189341712,
+                    "start": "2047-08-20 16:02:06",
+                    "end": "2053-08-20 02:57:18"
+                },
+                "Mo": {
+                    "nesting": 1,
+                    "type": "mahadasha",
+                    "key": "Mo",
+                    "duration": 315569520,
+                    "start": "2053-08-20 02:57:18",
+                    "end": "2063-08-20 13:09:18"
+                },
+                "Ma": {
+                    "nesting": 1,
+                    "type": "mahadasha",
+                    "key": "Ma",
+                    "duration": 220898664,
+                    "start": "2063-08-20 13:09:18",
+                    "end": "2070-08-20 05:53:42"
+                },
+                "Ra": {
+                    "nesting": 1,
+                    "type": "mahadasha",
+                    "key": "Ra",
+                    "duration": 568025136,
+                    "start": "2070-08-20 05:53:42",
+                    "end": "2088-08-19 14:39:18"
+                }
+            }
+        },
+        "houses": {
+            "1": {
+                "graha": {
+                    "Ma": {
+                        "longitude": 43.3182516,
+                        "latitude": 0.1198871,
+                        "speed": 0.7058026,
+                        "ascension": 65.061527,
+                        "declination": 21.5850818,
+                        "rashi": 2,
+                        "degree": 13.318251600000004,
+                        "nakshatra": {
+                            "anga": "nakshatra",
+                            "key": 4,
+                            "ratio": 1,
+                            "abhijit": false,
+                            "left": 75.11311299999998,
+                            "name": "Rohini",
+                            "pada": 1
+                        },
+                        "astangata": false,
+                        "rashiAvastha": "neutral",
+                        "vargottama": false,
+                        "yuddha": false,
+                        "gocharastha": 0,
+                        "bhavaCharacter": "papa",
+                        "tempRelation": {
+                            "Su": 1,
+                            "Mo": -1,
+                            "Me": 1,
+                            "Ju": -1,
+                            "Ve": 1,
+                            "Sa": -1,
+                            "Ra": 1,
+                            "Ke": -1
+                        },
+                        "relation": {
+                            "Su": 2,
+                            "Mo": 0,
+                            "Me": 0,
+                            "Ju": 0,
+                            "Ve": 1,
+                            "Sa": -1,
+                            "Ra": 0,
+                            "Ke": 0,
+                            "Ma": null
+                        },
+                        "yogakaraka": false,
+                        "mrityu": false,
+                        "pushkaraNavamsha": 0,
+                        "pushkaraBhaga": 0.6817483999999965,
+                        "avastha": {
+                            "baladi": "yuva",
+                            "jagradi": "swapna",
+                            "deeptadi": [
+                                "dina"
+                            ]
+                        },
+                        "dispositor": "Ve"
+                    }
+                }
+            },
+            "2": {
+                "graha": {
+                    "Su": {
+                        "longitude": 60.1732332,
+                        "latitude": 0.0001817,
+                        "speed": 0.954757,
+                        "ascension": 83.2158666,
+                        "declination": 23.2952924,
+                        "rashi": 3,
+                        "degree": 0.17323319999999853,
+                        "nakshatra": {
+                            "anga": "nakshatra",
+                            "key": 5,
+                            "ratio": 1,
+                            "abhijit": false,
+                            "left": 48.70075100000003,
+                            "name": "Mrigashirsha",
+                            "pada": 3
+                        },
+                        "astangata": null,
+                        "rashiAvastha": "neutral",
+                        "vargottama": false,
+                        "yuddha": null,
+                        "gocharastha": 0,
+                        "bhavaCharacter": "mishra",
+                        "tempRelation": {
+                            "Mo": -1,
+                            "Ma": 1,
+                            "Me": -1,
+                            "Ju": 1,
+                            "Ve": -1,
+                            "Sa": 1,
+                            "Ra": 1,
+                            "Ke": -1
+                        },
+                        "relation": {
+                            "Mo": 0,
+                            "Ma": 2,
+                            "Me": -1,
+                            "Ju": 2,
+                            "Ve": -2,
+                            "Sa": 0,
+                            "Ra": 0,
+                            "Ke": -2,
+                            "Su": null
+                        },
+                        "yogakaraka": false,
+                        "mrityu": false,
+                        "pushkaraNavamsha": 0,
+                        "pushkaraBhaga": false,
+                        "avastha": {
+                            "baladi": "bala",
+                            "jagradi": "swapna",
+                            "deeptadi": [
+                                "dina"
+                            ]
+                        },
+                        "dispositor": "Me"
+                    },
+                    "Me": {
+                        "longitude": 70.5499334,
+                        "latitude": -2.2312466,
+                        "speed": -0.3723524,
+                        "ascension": 94.4445895,
+                        "declination": 21.1464669,
+                        "rashi": 3,
+                        "degree": 10.5499334,
+                        "nakshatra": {
+                            "anga": "nakshatra",
+                            "key": 6,
+                            "ratio": 1,
+                            "abhijit": false,
+                            "left": 70.87549950000002,
+                            "name": "Ardra",
+                            "pada": 2
+                        },
+                        "astangata": false,
+                        "rashiAvastha": "swa",
+                        "vargottama": false,
+                        "yuddha": false,
+                        "gocharastha": 1,
+                        "bhavaCharacter": "shubha",
+                        "tempRelation": {
+                            "Su": -1,
+                            "Mo": -1,
+                            "Ma": 1,
+                            "Ju": 1,
+                            "Ve": -1,
+                            "Sa": 1,
+                            "Ra": 1,
+                            "Ke": -1
+                        },
+                        "relation": {
+                            "Su": 0,
+                            "Mo": -2,
+                            "Ma": 1,
+                            "Ju": 1,
+                            "Ve": 0,
+                            "Sa": 1,
+                            "Ra": 2,
+                            "Ke": 0,
+                            "Me": null
+                        },
+                        "yogakaraka": false,
+                        "mrityu": false,
+                        "pushkaraNavamsha": 0,
+                        "pushkaraBhaga": false,
+                        "avastha": {
+                            "baladi": "kumara",
+                            "jagradi": "jagrata",
+                            "deeptadi": [
+                                "swastha",
+                                "vikala"
+                            ]
+                        },
+                        "dispositor": "Me"
+                    },
+                    "Ve": {
+                        "longitude": 78.2519801,
+                        "latitude": 1.1835673,
+                        "speed": 1.2213321,
+                        "ascension": 102.9967771,
+                        "declination": 24.0921542,
+                        "rashi": 3,
+                        "degree": 18.251980099999997,
+                        "nakshatra": {
+                            "anga": "nakshatra",
+                            "key": 6,
+                            "ratio": 1,
+                            "abhijit": false,
+                            "left": 13.110149250000045,
+                            "name": "Ardra",
+                            "pada": 4
+                        },
+                        "astangata": false,
+                        "rashiAvastha": "friend",
+                        "vargottama": false,
+                        "yuddha": false,
+                        "gocharastha": 0,
+                        "bhavaCharacter": "shubha",
+                        "tempRelation": {
+                            "Su": -1,
+                            "Mo": -1,
+                            "Ma": 1,
+                            "Me": -1,
+                            "Ju": 1,
+                            "Sa": 1,
+                            "Ra": 1,
+                            "Ke": -1
+                        },
+                        "relation": {
+                            "Su": -2,
+                            "Mo": -2,
+                            "Ma": 1,
+                            "Me": 0,
+                            "Ju": 1,
+                            "Sa": 2,
+                            "Ra": 2,
+                            "Ke": 0,
+                            "Ve": null
+                        },
+                        "yogakaraka": false,
+                        "mrityu": false,
+                        "pushkaraNavamsha": 12,
+                        "pushkaraBhaga": 0.25198009999999726,
+                        "avastha": {
+                            "baladi": "vridha",
+                            "jagradi": "swapna",
+                            "deeptadi": [
+                                "shanta",
+                                "vikala"
+                            ]
+                        },
+                        "dispositor": "Me"
+                    }
+                }
+            },
+            "3": {
+                "graha": {
+                    "Ra": {
+                        "longitude": 98.7016161,
+                        "latitude": -0,
+                        "speed": -0.1177741,
+                        "ascension": 124.5681131,
+                        "declination": 19.649169,
+                        "rashi": 4,
+                        "degree": 8.701616099999995,
+                        "nakshatra": {
+                            "anga": "nakshatra",
+                            "key": 8,
+                            "ratio": 1,
+                            "abhijit": false,
+                            "left": 59.73787925000006,
+                            "name": "Pushya",
+                            "pada": 2
+                        },
+                        "astangata": null,
+                        "rashiAvastha": "enemy",
+                        "vargottama": false,
+                        "yuddha": null,
+                        "gocharastha": 0,
+                        "bhavaCharacter": "mishra",
+                        "tempRelation": {
+                            "Su": 1,
+                            "Mo": -1,
+                            "Ma": 1,
+                            "Me": 1,
+                            "Ju": 1,
+                            "Ve": 1,
+                            "Sa": 1,
+                            "Ke": -1
+                        },
+                        "relation": {
+                            "Su": 0,
+                            "Mo": -2,
+                            "Ma": 0,
+                            "Me": 2,
+                            "Ju": 1,
+                            "Ve": 2,
+                            "Sa": 2,
+                            "Ke": -2,
+                            "Ra": null
+                        },
+                        "yogakaraka": false,
+                        "mrityu": false,
+                        "pushkaraNavamsha": 6,
+                        "pushkaraBhaga": 0.7016160999999954,
+                        "avastha": {
+                            "baladi": "vridha",
+                            "jagradi": "sushupta",
+                            "deeptadi": [
+                                "khala"
+                            ]
+                        },
+                        "dispositor": "Mo"
+                    }
+                }
+            },
+            "4": {
+                "graha": []
+            },
+            "5": {
+                "graha": {
+                    "Ju": {
+                        "longitude": 157.3434278,
+                        "latitude": 1.360596,
+                        "speed": 0.0533114,
+                        "ascension": 181.4049382,
+                        "declination": 0.8738356,
+                        "rashi": 6,
+                        "degree": 7.343427800000001,
+                        "nakshatra": {
+                            "anga": "nakshatra",
+                            "key": 12,
+                            "ratio": 1,
+                            "abhijit": false,
+                            "left": 19.924291500000045,
+                            "name": "Uttara Phalguni",
+                            "pada": 4
+                        },
+                        "astangata": false,
+                        "rashiAvastha": "enemy",
+                        "vargottama": false,
+                        "yuddha": false,
+                        "gocharastha": 0,
+                        "bhavaCharacter": "papa",
+                        "tempRelation": {
+                            "Su": 1,
+                            "Mo": 1,
+                            "Ma": -1,
+                            "Me": 1,
+                            "Ve": 1,
+                            "Sa": -1,
+                            "Ra": 1,
+                            "Ke": -1
+                        },
+                        "relation": {
+                            "Su": 2,
+                            "Mo": 2,
+                            "Ma": 0,
+                            "Me": 0,
+                            "Ve": 0,
+                            "Sa": -1,
+                            "Ra": 1,
+                            "Ke": -1,
+                            "Ju": null
+                        },
+                        "yogakaraka": false,
+                        "mrityu": false,
+                        "pushkaraNavamsha": 12,
+                        "pushkaraBhaga": false,
+                        "avastha": {
+                            "baladi": "vridha",
+                            "jagradi": "sushupta",
+                            "deeptadi": [
+                                "dukhita",
+                                "vikala"
+                            ]
+                        },
+                        "dispositor": "Me"
+                    },
+                    "Sa": {
+                        "longitude": 159.4845555,
+                        "latitude": 2.4638307,
+                        "speed": 0.0166278,
+                        "ascension": 183.8074051,
+                        "declination": 1.0352864,
+                        "rashi": 6,
+                        "degree": 9.484555499999999,
+                        "nakshatra": {
+                            "anga": "nakshatra",
+                            "key": 12,
+                            "ratio": 1,
+                            "abhijit": false,
+                            "left": 3.8658337500000606,
+                            "name": "Uttara Phalguni",
+                            "pada": 4
+                        },
+                        "astangata": false,
+                        "rashiAvastha": "friend",
+                        "vargottama": false,
+                        "yuddha": false,
+                        "gocharastha": 0,
+                        "bhavaCharacter": "yogakaraka",
+                        "tempRelation": {
+                            "Su": 1,
+                            "Mo": 1,
+                            "Ma": -1,
+                            "Me": 1,
+                            "Ju": -1,
+                            "Ve": 1,
+                            "Ra": 1,
+                            "Ke": -1
+                        },
+                        "relation": {
+                            "Su": 0,
+                            "Mo": 0,
+                            "Ma": -2,
+                            "Me": 2,
+                            "Ju": -1,
+                            "Ve": 2,
+                            "Ra": 2,
+                            "Ke": -2,
+                            "Sa": null
+                        },
+                        "yogakaraka": true,
+                        "mrityu": false,
+                        "pushkaraNavamsha": 12,
+                        "pushkaraBhaga": 0.48455549999999903,
+                        "avastha": {
+                            "baladi": "vridha",
+                            "jagradi": "swapna",
+                            "deeptadi": [
+                                "pramudita"
+                            ]
+                        },
+                        "dispositor": "Me"
+                    }
+                }
+            },
+            "6": {
+                "graha": []
+            },
+            "7": {
+                "graha": {
+                    "Mo": {
+                        "longitude": 210.6817108,
+                        "latitude": 4.7851551,
+                        "speed": 11.8931578,
+                        "ascension": 233.1206132,
+                        "declination": -14.2005552,
+                        "rashi": 8,
+                        "degree": 0.6817107999999905,
+                        "nakshatra": {
+                            "anga": "nakshatra",
+                            "key": 16,
+                            "ratio": 1,
+                            "abhijit": false,
+                            "left": 19.887169000000142,
+                            "name": "Vishakha",
+                            "pada": 4
+                        },
+                        "astangata": false,
+                        "rashiAvastha": "neecha",
+                        "vargottama": false,
+                        "yuddha": null,
+                        "gocharastha": -1,
+                        "bhavaCharacter": "papa",
+                        "tempRelation": {
+                            "Su": -1,
+                            "Ma": -1,
+                            "Me": -1,
+                            "Ju": 1,
+                            "Ve": -1,
+                            "Sa": 1,
+                            "Ra": -1,
+                            "Ke": 1
+                        },
+                        "relation": {
+                            "Su": 0,
+                            "Ma": -1,
+                            "Me": 0,
+                            "Ju": 1,
+                            "Ve": -1,
+                            "Sa": 1,
+                            "Ra": -2,
+                            "Ke": 0,
+                            "Mo": null
+                        },
+                        "yogakaraka": false,
+                        "mrityu": false,
+                        "pushkaraNavamsha": 4,
+                        "pushkaraBhaga": false,
+                        "avastha": {
+                            "baladi": "mrita",
+                            "jagradi": "sushupta",
+                            "deeptadi": [
+                                "dina"
+                            ]
+                        },
+                        "dispositor": "Ma"
+                    }
+                }
+            },
+            "8": {
+                "graha": []
+            },
+            "9": {
+                "graha": {
+                    "Ke": {
+                        "longitude": 278.7016161,
+                        "latitude": -0,
+                        "speed": -0.1177741,
+                        "rashi": 10,
+                        "degree": 8.701616100000024,
+                        "ascension": 304.5681131,
+                        "declination": 19.649169,
+                        "nakshatra": {
+                            "anga": "nakshatra",
+                            "key": 21,
+                            "ratio": 1,
+                            "abhijit": false,
+                            "left": 9.737879249999915,
+                            "name": "Uttara Ashadha",
+                            "pada": 4
+                        },
+                        "astangata": null,
+                        "rashiAvastha": "enemy",
+                        "vargottama": false,
+                        "yuddha": null,
+                        "gocharastha": 0,
+                        "bhavaCharacter": "mishra",
+                        "tempRelation": {
+                            "Su": -1,
+                            "Mo": 1,
+                            "Ma": -1,
+                            "Me": -1,
+                            "Ju": -1,
+                            "Ve": -1,
+                            "Sa": -1,
+                            "Ra": -1
+                        },
+                        "relation": {
+                            "Su": -2,
+                            "Mo": 0,
+                            "Ma": 0,
+                            "Me": 0,
+                            "Ju": -1,
+                            "Ve": 0,
+                            "Sa": -2,
+                            "Ra": -2,
+                            "Ke": null
+                        },
+                        "yogakaraka": false,
+                        "mrityu": false,
+                        "pushkaraNavamsha": 12,
+                        "pushkaraBhaga": false,
+                        "avastha": {
+                            "baladi": "vridha",
+                            "jagradi": "sushupta",
+                            "deeptadi": [
+                                "khala"
+                            ]
+                        },
+                        "dispositor": "Sa"
+                    }
+                }
+            },
+            "10": {
+                "graha": []
+            },
+            "11": {
+                "graha": []
+            },
+            "12": {
+                "graha": []
+            }
+        }
+    },
+    "duration_of_response": 0.064,
+    "created_at": "2026-07-08 13:53:45"
+}

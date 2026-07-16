@@ -20,6 +20,9 @@ export default function NewKundli({ onCreateChart }: NewKundliProps) {
     hour,
     minute,
     birthPlace,
+    latitude,
+    longitude,
+    timeZone,
     isFemale,
     setName,
     setDay,
@@ -28,6 +31,9 @@ export default function NewKundli({ onCreateChart }: NewKundliProps) {
     setHour,
     setMinute,
     setBirthPlace,
+    setLatitude,
+    setLongitude,
+    setTimeZone,
     setIsFemale,
   } = useKundliStore();
 
@@ -87,6 +93,12 @@ export default function NewKundli({ onCreateChart }: NewKundliProps) {
         onChangeText={setBirthPlace}
         onSearchPress={() => { }}
         error={showErrors && birthPlaceError}
+        latitude={latitude}
+        longitude={longitude}
+        timeZone={timeZone}
+        onChangeLatitude={setLatitude}
+        onChangeLongitude={setLongitude}
+        onChangeTimeZone={setTimeZone}
       />
 
       <GenderSwitch isFemale={isFemale} onValueChange={setIsFemale} />

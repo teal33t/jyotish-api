@@ -2,12 +2,14 @@ import React from 'react';
 import { View, StyleSheet, ActivityIndicator, Dimensions } from 'react-native';
 import DrawChart from '../components/drawChart';
 import HttpService from '../services/httpService';
-import { formatChartData, ChartResponse, fallbackChartData, isChartData } from '../utils/chartPage';
+import { formatChartData, formatTimeZoneForApi, ChartResponse, fallbackChartData, isChartData } from '../utils/chartPage';
+import { useKundliStore } from '../store/kundliStore';
 const { width } = Dimensions.get('window');
 
 const apiService = new HttpService('http://192.168.1.10:9393');
 
 export default function Chart() {
+  const { latitude, longitude, year, month, day, hour, minute, timeZone } = useKundliStore();
   const [chartData, setChartData] = React.useState<
     Record<number, { rashi: string; planets: string[] }>
   >(fallbackChartData);
@@ -19,15 +21,15 @@ export default function Chart() {
     (async () => {
       try {
         const params = {
-          latitude: '20.8980',
-          longitude: '74.7732',
-          year: '1981',
-          month: '06',
-          day: '15',
-          hour: '04',
-          min: '29',
+          latitude,
+          longitude,
+          year,
+          month: month.padStart(2, '0'),
+          day: day.padStart(2, '0'),
+          hour,
+          min: minute,
           sec: '0',
-          time_zone: '+05:30',
+          time_zone: formatTimeZoneForApi(timeZone),
           dst_hour: '0',
           dst_min: '0',
           nesting: '0',
@@ -53,7 +55,7 @@ export default function Chart() {
     return () => {
       cancelled = true;
     };
-  }, []);
+  }, [latitude, longitude, year, month, day, hour, minute, timeZone]);
 
   if (loading) {
     return (
@@ -71,5 +73,5 @@ export default function Chart() {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#fff' },
+  container: { flex: .5, justifyContent: 'center', alignItems: 'center', backgroundColor: '#fff' },
 });

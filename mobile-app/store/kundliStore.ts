@@ -10,6 +10,7 @@ type KundliState = {
   birthPlace: string;
   latitude: string;
   longitude: string;
+  timeZone: string;
   isFemale: string;
 
   setName: (value: string) => void;
@@ -21,6 +22,7 @@ type KundliState = {
   setBirthPlace: (value: string) => void;
   setLatitude: (value: string) => void;
   setLongitude: (value: string) => void;
+  setTimeZone: (value: string) => void;
   setIsFemale: (value: string) => void;
   reset: () => void;
 };
@@ -35,6 +37,7 @@ const initialState = {
   birthPlace: '',
   latitude: '',
   longitude: '',
+  timeZone: '+00.00',
   isFemale: 'Male',
 };
 
@@ -50,6 +53,7 @@ export const useKundliStore = create<KundliState>((set) => ({
   setBirthPlace: (value) => set({ birthPlace: value }),
   setLatitude: (value) => set({ latitude: value }),
   setLongitude: (value) => set({ longitude: value }),
+  setTimeZone: (value) => set({ timeZone: value }),
   setIsFemale: (value) => set({ isFemale: value }),
   reset: () => set(initialState),
 }));

@@ -4,20 +4,45 @@ import { TextInput, IconButton, HelperText } from 'react-native-paper';
 import SelectDialog from './SelectDialog';
 import HttpService from '../services/httpService';
 import { birthPlaceInputStyles as styles } from '../custom-styles/birthPlaceInputStyles';
-import { BirthPlaceInputProps, PlaceOption, PlaceApiResponse } from '../utils/componentTypes';
+import { BirthPlaceInputProps, PlaceOption, TimezoneOption } from '../utils/componentTypes';
 
-const nominatimService = new HttpService('https://nominatim.openstreetmap.org');
+const nominatimService = new HttpService(process.env.EXPO_PUBLIC_APP_BASE_URL);
 
-const BirthPlaceInput = ({ value, onChangeText, onSearchPress, error }: BirthPlaceInputProps) => {
+const BirthPlaceInput = ({
+  value,
+  onChangeText,
+  onSearchPress,
+  error,
+  latitude,
+  longitude,
+  timeZone,
+  onChangeLatitude,
+  onChangeLongitude,
+  onChangeTimeZone,
+}: BirthPlaceInputProps) => {
 
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedPlace, setSelectedPlace] = useState('');
   const [placeOptions, setPlaceOptions] = useState<PlaceOption[]>([]);
   const [loading, setLoading] = useState(false);
   const [queryError, setQueryError] = useState(false);
-  const [latitude, setLatitude] = useState('');
-  const [longitude, setLongitude] = useState('');
-  const [timeZone, setTimeZone] = useState('+5.5');
+
+  const fetchTimezone = async (lat: string, lon: string) => {
+    try {
+      const response = await nominatimService.get<TimezoneOption>('/timezone/search', {
+        latitude: lat,
+        longitude: lon,
+      });
+      if (response.ok) {
+        console.log('Fetched timezone:', response.data);
+        onChangeTimeZone(response.data.utcOffset);
+      } else {
+        console.log('Timezone API error, status:', response.status, response.data);
+      }
+    } catch (error) {
+      console.log('Error fetching timezone:', error);
+    }
+  };
 
   const handleSearchPress = async () => {
     onSearchPress();
@@ -43,17 +68,10 @@ const BirthPlaceInput = ({ value, onChangeText, onSearchPress, error }: BirthPla
     };
 
     try {
-      const response = await nominatimService.get<PlaceApiResponse[]>('/search', params, headers);
+      const response = await nominatimService.get<PlaceOption[]>('/geolocation/search', params, headers);
       if (response.ok) {
-        console.log('Fetched places response.data:', response.data);
-        const formattedOptions = response.data.map((place) => ({
-          label: place.display_name,
-          value: String(place.place_id),
-          latitude: place.lat,
-          longitude: place.lon,
-        }));
-        console.log('Fetched places:', formattedOptions);
-        setPlaceOptions(formattedOptions);
+        console.log('Fetched places:', response.data);
+        setPlaceOptions(response.data);
 
       } else {
         console.log('Place API error, status:', response.status, response.data);
@@ -96,7 +114,7 @@ const BirthPlaceInput = ({ value, onChangeText, onSearchPress, error }: BirthPla
           mode="flat"
           placeholder="Latitude"
           value={latitude}
-          onChangeText={setLatitude}
+          onChangeText={onChangeLatitude}
           style={[styles.smallinput, styles.coordField]}
           placeholderTextColor="#999"
         />
@@ -105,7 +123,7 @@ const BirthPlaceInput = ({ value, onChangeText, onSearchPress, error }: BirthPla
           mode="flat"
           placeholder="Longitude"
           value={longitude}
-          onChangeText={setLongitude}
+          onChangeText={onChangeLongitude}
           style={[styles.smallinput, styles.coordField]}
           placeholderTextColor="#999"
         />
@@ -131,9 +149,13 @@ const BirthPlaceInput = ({ value, onChangeText, onSearchPress, error }: BirthPla
         onSelect={(value: any) => {
           const place = placeOptions.find((p) => p.value === value);
           setSelectedPlace(value);
-          setLatitude(place?.latitude || '');
-          setLongitude(place?.longitude || '');
+          onChangeLatitude(place?.latitude || '');
+          onChangeLongitude(place?.longitude || '');
           onChangeText(place?.label ?? value);
+
+          if (place?.latitude && place?.longitude) {
+            fetchTimezone(place.latitude, place.longitude);
+          }
         }}
       />
     </View>

@@ -18,6 +18,15 @@ export const fallbackChartData: Record<number, { rashi: string; planets: string[
 };
 
 
+export const formatTimeZoneForApi = (offset: string): string => {
+  const value = parseFloat(offset) || 0;
+  const sign = value < 0 ? '-' : '+';
+  const absHours = Math.abs(value);
+  const hours = Math.floor(absHours);
+  const minutes = Math.round((absHours - hours) * 60);
+  return `${sign}${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`;
+};
+
 export const isChartData = (
   value: unknown
 ): value is Record<number, { rashi: string; planets: string[] }> => {

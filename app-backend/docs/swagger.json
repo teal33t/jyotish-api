@@ -1,0 +1,789 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "Jyotish API for managing users and kundali charts",
+        "title": "Jyotish API",
+        "contact": {},
+        "version": "1.0"
+    },
+    "host": "localhost:5656",
+    "basePath": "/api/v1",
+    "paths": {
+        "/all-kundali": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Get all kundali charts across all users",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "kundali"
+                ],
+                "summary": "List all kundalis",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    }
+                }
+            }
+        },
+        "/geolocation/search": {
+            "get": {
+                "description": "Proxy to OpenStreetMap Nominatim search API",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "geolocation"
+                ],
+                "summary": "Search places via Nominatim",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Place name query",
+                        "name": "q",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Max results (default 5)",
+                        "name": "limit",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Include address details (default 1)",
+                        "name": "addressdetails",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Response format (default json)",
+                        "name": "format",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "additionalProperties": true
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    },
+                    "502": {
+                        "description": "Bad Gateway",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    }
+                }
+            }
+        },
+        "/list-kundali": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Get all kundali charts for the authenticated user",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "kundali"
+                ],
+                "summary": "List user kundalis",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    }
+                }
+            }
+        },
+        "/login": {
+            "post": {
+                "description": "Authenticate user with email and password, returns JWT token",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "auth"
+                ],
+                "summary": "Login user",
+                "parameters": [
+                    {
+                        "description": "Login request",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/model.LoginRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model.AuthResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    }
+                }
+            }
+        },
+        "/register": {
+            "post": {
+                "description": "Create a new user account with email and password",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "auth"
+                ],
+                "summary": "Register a new user",
+                "parameters": [
+                    {
+                        "description": "Register request",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/model.RegisterRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/model.AuthResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    },
+                    "409": {
+                        "description": "Conflict",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    }
+                }
+            }
+        },
+        "/save-kundali": {
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Save a kundali chart for the authenticated user",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "kundali"
+                ],
+                "summary": "Save kundali chart",
+                "parameters": [
+                    {
+                        "description": "Kundali chart data",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/model.Kundli"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "model.AuthResponse": {
+            "type": "object",
+            "properties": {
+                "email": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "token": {
+                    "type": "string"
+                }
+            }
+        },
+        "model.AvasthaData": {
+            "type": "object",
+            "properties": {
+                "baladi": {
+                    "type": "string"
+                },
+                "deeptadi": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "jagradi": {
+                    "type": "string"
+                }
+            }
+        },
+        "model.BhavaData": {
+            "type": "object",
+            "properties": {
+                "graha": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "#/definitions/model.GrahaEntry"
+                    }
+                }
+            }
+        },
+        "model.ChartData": {
+            "type": "object",
+            "properties": {
+                "bhava": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "#/definitions/model.BhavaData"
+                    }
+                },
+                "dasha": {
+                    "$ref": "#/definitions/model.DashaData"
+                },
+                "graha": {
+                    "$ref": "#/definitions/model.GrahaData"
+                },
+                "kala": {
+                    "$ref": "#/definitions/model.KalaData"
+                },
+                "lagna": {
+                    "$ref": "#/definitions/model.LagnaData"
+                },
+                "panchanga": {
+                    "$ref": "#/definitions/model.PanchangaData"
+                },
+                "rising": {
+                    "$ref": "#/definitions/model.RisingData"
+                },
+                "user": {
+                    "$ref": "#/definitions/model.UserData"
+                }
+            }
+        },
+        "model.DashaData": {
+            "type": "object",
+            "properties": {
+                "duration": {
+                    "type": "integer"
+                },
+                "end": {
+                    "type": "string"
+                },
+                "key": {
+                    "type": "string"
+                },
+                "nesting": {
+                    "type": "integer"
+                },
+                "periods": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "#/definitions/model.DashaPeriod"
+                    }
+                },
+                "start": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                }
+            }
+        },
+        "model.DashaPeriod": {
+            "type": "object",
+            "properties": {
+                "duration": {
+                    "type": "integer"
+                },
+                "end": {
+                    "type": "string"
+                },
+                "key": {
+                    "type": "string"
+                },
+                "nesting": {
+                    "type": "integer"
+                },
+                "start": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                }
+            }
+        },
+        "model.GrahaData": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/definitions/model.GrahaEntry"
+            }
+        },
+        "model.GrahaEntry": {
+            "type": "object",
+            "properties": {
+                "ascension": {
+                    "type": "number"
+                },
+                "astangata": {
+                    "type": "boolean"
+                },
+                "avastha": {
+                    "$ref": "#/definitions/model.AvasthaData"
+                },
+                "bhavaCharacter": {
+                    "type": "string"
+                },
+                "declination": {
+                    "type": "number"
+                },
+                "degree": {
+                    "type": "number"
+                },
+                "dispositor": {
+                    "type": "string"
+                },
+                "gocharastha": {
+                    "type": "integer"
+                },
+                "latitude": {
+                    "type": "number"
+                },
+                "longitude": {
+                    "type": "number"
+                },
+                "mrityu": {
+                    "type": "boolean"
+                },
+                "nakshatra": {
+                    "$ref": "#/definitions/model.NakshatraData"
+                },
+                "pushkaraBhaga": {
+                    "type": "number"
+                },
+                "pushkaraNavamsha": {
+                    "type": "integer"
+                },
+                "rashi": {
+                    "type": "integer"
+                },
+                "rashiAvastha": {
+                    "type": "string"
+                },
+                "relation": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "integer"
+                    }
+                },
+                "speed": {
+                    "type": "number"
+                },
+                "tempRelation": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "integer"
+                    }
+                },
+                "vargottama": {
+                    "type": "boolean"
+                },
+                "yogakaraka": {
+                    "type": "boolean"
+                },
+                "yuddha": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "model.HoraData": {
+            "type": "object",
+            "properties": {
+                "end": {
+                    "type": "string"
+                },
+                "interval": {
+                    "type": "number"
+                },
+                "key": {
+                    "type": "string"
+                },
+                "left": {
+                    "type": "number"
+                },
+                "number": {
+                    "type": "integer"
+                },
+                "type": {
+                    "type": "string"
+                }
+            }
+        },
+        "model.KalaData": {
+            "type": "object",
+            "properties": {
+                "hora": {
+                    "$ref": "#/definitions/model.HoraData"
+                }
+            }
+        },
+        "model.KaranaData": {
+            "type": "object",
+            "properties": {
+                "anga": {
+                    "type": "string"
+                },
+                "key": {
+                    "type": "integer"
+                },
+                "left": {
+                    "type": "number"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "model.Kundli": {
+            "type": "object",
+            "properties": {
+                "chart": {
+                    "$ref": "#/definitions/model.ChartData"
+                },
+                "created_at": {
+                    "type": "string"
+                },
+                "duration_of_response": {
+                    "type": "number"
+                }
+            }
+        },
+        "model.LagnaData": {
+            "type": "object",
+            "properties": {
+                "Lg": {
+                    "$ref": "#/definitions/model.GrahaEntry"
+                },
+                "MLg": {
+                    "$ref": "#/definitions/model.GrahaEntry"
+                }
+            }
+        },
+        "model.LoginRequest": {
+            "type": "object",
+            "required": [
+                "email",
+                "password"
+            ],
+            "properties": {
+                "email": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                }
+            }
+        },
+        "model.NakshatraData": {
+            "type": "object",
+            "properties": {
+                "abhijit": {
+                    "type": "boolean"
+                },
+                "anga": {
+                    "type": "string"
+                },
+                "key": {
+                    "type": "integer"
+                },
+                "left": {
+                    "type": "number"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "pada": {
+                    "type": "integer"
+                },
+                "ratio": {
+                    "type": "integer"
+                }
+            }
+        },
+        "model.PanchangaData": {
+            "type": "object",
+            "properties": {
+                "karana": {
+                    "$ref": "#/definitions/model.KaranaData"
+                },
+                "nakshatra": {
+                    "$ref": "#/definitions/model.NakshatraData"
+                },
+                "tithi": {
+                    "$ref": "#/definitions/model.TithiData"
+                },
+                "vara": {
+                    "$ref": "#/definitions/model.VaraData"
+                },
+                "yoga": {
+                    "$ref": "#/definitions/model.YogaData"
+                }
+            }
+        },
+        "model.RegisterRequest": {
+            "type": "object",
+            "required": [
+                "email",
+                "password"
+            ],
+            "properties": {
+                "email": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string",
+                    "minLength": 6
+                }
+            }
+        },
+        "model.RisingData": {
+            "type": "object",
+            "additionalProperties": {
+                "type": "array",
+                "items": {
+                    "$ref": "#/definitions/model.RisingEntry"
+                }
+            }
+        },
+        "model.RisingEntry": {
+            "type": "object",
+            "properties": {
+                "rising": {
+                    "type": "string"
+                },
+                "setting": {
+                    "type": "string"
+                }
+            }
+        },
+        "model.TithiData": {
+            "type": "object",
+            "properties": {
+                "anga": {
+                    "type": "string"
+                },
+                "key": {
+                    "type": "integer"
+                },
+                "left": {
+                    "type": "number"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "paksha": {
+                    "type": "string"
+                }
+            }
+        },
+        "model.UserData": {
+            "type": "object",
+            "properties": {
+                "altitude": {
+                    "type": "number"
+                },
+                "datetime": {
+                    "type": "string"
+                },
+                "latitude": {
+                    "type": "number"
+                },
+                "longitude": {
+                    "type": "number"
+                },
+                "timezone": {
+                    "type": "string"
+                }
+            }
+        },
+        "model.VaraData": {
+            "type": "object",
+            "properties": {
+                "anga": {
+                    "type": "string"
+                },
+                "key": {
+                    "type": "string"
+                },
+                "left": {
+                    "type": "number"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "week": {
+                    "type": "string"
+                }
+            }
+        },
+        "model.YogaData": {
+            "type": "object",
+            "properties": {
+                "anga": {
+                    "type": "string"
+                },
+                "key": {
+                    "type": "integer"
+                },
+                "left": {
+                    "type": "number"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "securityDefinitions": {
+        "BearerAuth": {
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header"
+        }
+    }
+}

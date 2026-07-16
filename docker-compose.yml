@@ -18,6 +18,55 @@ services:
       retries: 3
       start_period: 15s
 
+  app_backend:
+    build:
+      context: ./app-backend
+      dockerfile: Dockerfile
+    container_name: app_backend
+    restart: unless-stopped
+    ports:
+      - "${APP_BACKEND_PORT:-5656}:5656"
+    volumes:
+      - app_backend_data:/app/data
+    depends_on:
+      mongodb:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    environment:
+      MONGODB_URI: mongodb://mongodb:27017/jyotish
+      REDIS_URL: redis://redis:6379
+
+  mongodb:
+    image: mongo:7
+    container_name: mongodb
+    restart: unless-stopped
+    ports:
+      - "${MONGODB_PORT:-27017}:27017"
+    volumes:
+      - mongodb_data:/data/db
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+  redis:
+    image: redis:7-alpine
+    container_name: redis
+    restart: unless-stopped
+    ports:
+      - "${REDIS_PORT:-6379}:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 5s
+
   jyotish_frontend:
     build:
       context: .
@@ -35,3 +84,8 @@ services:
       timeout: 10s
       retries: 3
       start_period: 5s
+
+volumes:
+  app_backend_data:
+  mongodb_data:
+  redis_data:

@@ -7,7 +7,7 @@ type HttpResponse<T> = {
 class HttpService {
   private baseUrl: string;
 
-  constructor(baseUrl: string = process.env.EXPO_PUBLIC_BASE_URL ?? 'http://localhost:9393') {
+  constructor(baseUrl: string = process.env.EXPO_PUBLIC_JYOTISH_URL ?? 'http://localhost:9393') {
     this.baseUrl = baseUrl;
   }
 
@@ -41,7 +41,37 @@ class HttpService {
       data,
     };
   }
+
+  async post<T>(
+    path: string,
+    body?: unknown,
+    headers?: Record<string, string>
+  ): Promise<HttpResponse<T>> {
+    const url = `${this.baseUrl}${path}`;
+
+    console.log(`Making POST request to: ${url}`);
+
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        ...headers,
+      },
+      body: body !== undefined ? JSON.stringify(body) : undefined,
+    });
+
+    const data = await response.json();
+
+    return {
+      ok: response.ok,
+      status: response.status,
+      data,
+    };
+  }
 }
 
 export const httpService = new HttpService();
+export const authHttpService = new HttpService(
+  process.env.EXPO_PUBLIC_APP_BASE_URL ?? 'http://localhost:5656/api/v1'
+);
 export default HttpService;

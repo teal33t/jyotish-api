@@ -1070,7 +1070,64 @@
         });
         svg.querySelectorAll('text').forEach(t => {
           t.setAttribute('fill', '#e2e2f0');
-        });
+          const textContent = t.textContent;
+          switch (textContent) {
+              case 'Ke':
+                  t.setAttribute('fill', '#9f9f9f');
+                  break;
+              case 'Ra':
+                  t.setAttribute('fill', '#fd834c');
+                  break;
+              case 'Sa':
+                  t.setAttribute('fill', '#3c8bad');
+                  break;
+              case 'Ve':
+                  t.setAttribute('fill', '#ff2396');
+                  break;
+              case 'Ju':
+                  t.setAttribute('fill', '#ffdb64');
+                  break;
+              case 'Me':
+                  t.setAttribute('fill', '#92ff11');
+                  break;
+              case 'Su':
+                  t.setAttribute('fill', '#fa9d00');
+                  break;
+              case 'Mo':
+                  t.setAttribute('fill', '#5ccfff');
+                  break;
+              case 'Ma':
+                  t.setAttribute('fill', '#ff3449');
+                  break;
+              case '(Ke)':
+                  t.setAttribute('fill', '#9f9f9f');
+                  break;
+              case '(Ra)':
+                  t.setAttribute('fill', '#fd834c');
+                  break;
+              case '(Sa)':
+                  t.setAttribute('fill', '#3c8bad');
+                  break;
+              case '(Ve)':
+                  t.setAttribute('fill', '#ff2396');
+                  break;
+              case '(Ju)':
+                  t.setAttribute('fill', '#ffdb64');
+                  break;
+              case '(Me)':
+                  t.setAttribute('fill', '#92ff11');
+                  break;
+              case '(Su)':
+                  t.setAttribute('fill', '#fa9d00');
+                  break;
+              case '(Mo)':
+                  t.setAttribute('fill', '#5ccfff');
+                  break;
+              case '(Ma)':
+                  t.setAttribute('fill', '#ff3449');
+                  break;                  
+          }
+      });
       }
     } catch (err) {
       container.innerHTML = '<div class="chart-loading"><span style="color:var(--red)">Chart render failed</span></div>';

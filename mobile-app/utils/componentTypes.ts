@@ -13,13 +13,12 @@ export type BirthPlaceInputProps = {
     onChangeText: (text: string) => void;
     onSearchPress: () => void;
     error?: boolean;
-};
-
-export type PlaceApiResponse = {
-    place_id: number;
-    display_name: string;
-    lat: string;
-    lon: string;
+    latitude: string;
+    longitude: string;
+    timeZone: string;
+    onChangeLatitude: (value: string) => void;
+    onChangeLongitude: (value: string) => void;
+    onChangeTimeZone: (value: string) => void;
 };
 
 export type PlaceOption = {
@@ -27,6 +26,11 @@ export type PlaceOption = {
     value: string,
     latitude: string;
     longitude: string
+};
+
+export type TimezoneOption = {
+    timeZone: string;
+    utcOffset: string;
 };
 
 export type BirthTimeInputProps = {

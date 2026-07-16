@@ -1,0 +1,519 @@
+basePath: /api/v1
+definitions:
+  model.AuthResponse:
+    properties:
+      email:
+        type: string
+      id:
+        type: integer
+      token:
+        type: string
+    type: object
+  model.AvasthaData:
+    properties:
+      baladi:
+        type: string
+      deeptadi:
+        items:
+          type: string
+        type: array
+      jagradi:
+        type: string
+    type: object
+  model.BhavaData:
+    properties:
+      graha:
+        additionalProperties:
+          $ref: '#/definitions/model.GrahaEntry'
+        type: object
+    type: object
+  model.ChartData:
+    properties:
+      bhava:
+        additionalProperties:
+          $ref: '#/definitions/model.BhavaData'
+        type: object
+      dasha:
+        $ref: '#/definitions/model.DashaData'
+      graha:
+        $ref: '#/definitions/model.GrahaData'
+      kala:
+        $ref: '#/definitions/model.KalaData'
+      lagna:
+        $ref: '#/definitions/model.LagnaData'
+      panchanga:
+        $ref: '#/definitions/model.PanchangaData'
+      rising:
+        $ref: '#/definitions/model.RisingData'
+      user:
+        $ref: '#/definitions/model.UserData'
+    type: object
+  model.DashaData:
+    properties:
+      duration:
+        type: integer
+      end:
+        type: string
+      key:
+        type: string
+      nesting:
+        type: integer
+      periods:
+        additionalProperties:
+          $ref: '#/definitions/model.DashaPeriod'
+        type: object
+      start:
+        type: string
+      type:
+        type: string
+    type: object
+  model.DashaPeriod:
+    properties:
+      duration:
+        type: integer
+      end:
+        type: string
+      key:
+        type: string
+      nesting:
+        type: integer
+      start:
+        type: string
+      type:
+        type: string
+    type: object
+  model.GrahaData:
+    additionalProperties:
+      $ref: '#/definitions/model.GrahaEntry'
+    type: object
+  model.GrahaEntry:
+    properties:
+      ascension:
+        type: number
+      astangata:
+        type: boolean
+      avastha:
+        $ref: '#/definitions/model.AvasthaData'
+      bhavaCharacter:
+        type: string
+      declination:
+        type: number
+      degree:
+        type: number
+      dispositor:
+        type: string
+      gocharastha:
+        type: integer
+      latitude:
+        type: number
+      longitude:
+        type: number
+      mrityu:
+        type: boolean
+      nakshatra:
+        $ref: '#/definitions/model.NakshatraData'
+      pushkaraBhaga:
+        type: number
+      pushkaraNavamsha:
+        type: integer
+      rashi:
+        type: integer
+      rashiAvastha:
+        type: string
+      relation:
+        additionalProperties:
+          type: integer
+        type: object
+      speed:
+        type: number
+      tempRelation:
+        additionalProperties:
+          type: integer
+        type: object
+      vargottama:
+        type: boolean
+      yogakaraka:
+        type: boolean
+      yuddha:
+        type: boolean
+    type: object
+  model.HoraData:
+    properties:
+      end:
+        type: string
+      interval:
+        type: number
+      key:
+        type: string
+      left:
+        type: number
+      number:
+        type: integer
+      type:
+        type: string
+    type: object
+  model.KalaData:
+    properties:
+      hora:
+        $ref: '#/definitions/model.HoraData'
+    type: object
+  model.KaranaData:
+    properties:
+      anga:
+        type: string
+      key:
+        type: integer
+      left:
+        type: number
+      name:
+        type: string
+    type: object
+  model.Kundli:
+    properties:
+      chart:
+        $ref: '#/definitions/model.ChartData'
+      created_at:
+        type: string
+      duration_of_response:
+        type: number
+    type: object
+  model.LagnaData:
+    properties:
+      Lg:
+        $ref: '#/definitions/model.GrahaEntry'
+      MLg:
+        $ref: '#/definitions/model.GrahaEntry'
+    type: object
+  model.LoginRequest:
+    properties:
+      email:
+        type: string
+      password:
+        type: string
+    required:
+    - email
+    - password
+    type: object
+  model.NakshatraData:
+    properties:
+      abhijit:
+        type: boolean
+      anga:
+        type: string
+      key:
+        type: integer
+      left:
+        type: number
+      name:
+        type: string
+      pada:
+        type: integer
+      ratio:
+        type: integer
+    type: object
+  model.PanchangaData:
+    properties:
+      karana:
+        $ref: '#/definitions/model.KaranaData'
+      nakshatra:
+        $ref: '#/definitions/model.NakshatraData'
+      tithi:
+        $ref: '#/definitions/model.TithiData'
+      vara:
+        $ref: '#/definitions/model.VaraData'
+      yoga:
+        $ref: '#/definitions/model.YogaData'
+    type: object
+  model.RegisterRequest:
+    properties:
+      email:
+        type: string
+      password:
+        minLength: 6
+        type: string
+    required:
+    - email
+    - password
+    type: object
+  model.RisingData:
+    additionalProperties:
+      items:
+        $ref: '#/definitions/model.RisingEntry'
+      type: array
+    type: object
+  model.RisingEntry:
+    properties:
+      rising:
+        type: string
+      setting:
+        type: string
+    type: object
+  model.TithiData:
+    properties:
+      anga:
+        type: string
+      key:
+        type: integer
+      left:
+        type: number
+      name:
+        type: string
+      paksha:
+        type: string
+    type: object
+  model.UserData:
+    properties:
+      altitude:
+        type: number
+      datetime:
+        type: string
+      latitude:
+        type: number
+      longitude:
+        type: number
+      timezone:
+        type: string
+    type: object
+  model.VaraData:
+    properties:
+      anga:
+        type: string
+      key:
+        type: string
+      left:
+        type: number
+      name:
+        type: string
+      week:
+        type: string
+    type: object
+  model.YogaData:
+    properties:
+      anga:
+        type: string
+      key:
+        type: integer
+      left:
+        type: number
+      name:
+        type: string
+    type: object
+host: localhost:5656
+info:
+  contact: {}
+  description: Jyotish API for managing users and kundali charts
+  title: Jyotish API
+  version: "1.0"
+paths:
+  /all-kundali:
+    get:
+      consumes:
+      - application/json
+      description: Get all kundali charts across all users
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties: true
+            type: object
+        "401":
+          description: Unauthorized
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: List all kundalis
+      tags:
+      - kundali
+  /geolocation/search:
+    get:
+      consumes:
+      - application/json
+      description: Proxy to OpenStreetMap Nominatim search API
+      parameters:
+      - description: Place name query
+        in: query
+        name: q
+        required: true
+        type: string
+      - description: Max results (default 5)
+        in: query
+        name: limit
+        type: integer
+      - description: Include address details (default 1)
+        in: query
+        name: addressdetails
+        type: integer
+      - description: Response format (default json)
+        in: query
+        name: format
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              additionalProperties: true
+              type: object
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties: true
+            type: object
+        "502":
+          description: Bad Gateway
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Search places via Nominatim
+      tags:
+      - geolocation
+  /list-kundali:
+    get:
+      consumes:
+      - application/json
+      description: Get all kundali charts for the authenticated user
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties: true
+            type: object
+        "401":
+          description: Unauthorized
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: List user kundalis
+      tags:
+      - kundali
+  /login:
+    post:
+      consumes:
+      - application/json
+      description: Authenticate user with email and password, returns JWT token
+      parameters:
+      - description: Login request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/model.LoginRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.AuthResponse'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties: true
+            type: object
+        "401":
+          description: Unauthorized
+          schema:
+            additionalProperties: true
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Login user
+      tags:
+      - auth
+  /register:
+    post:
+      consumes:
+      - application/json
+      description: Create a new user account with email and password
+      parameters:
+      - description: Register request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/model.RegisterRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/model.AuthResponse'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties: true
+            type: object
+        "409":
+          description: Conflict
+          schema:
+            additionalProperties: true
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Register a new user
+      tags:
+      - auth
+  /save-kundali:
+    post:
+      consumes:
+      - application/json
+      description: Save a kundali chart for the authenticated user
+      parameters:
+      - description: Kundali chart data
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/model.Kundli'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties: true
+            type: object
+        "401":
+          description: Unauthorized
+          schema:
+            additionalProperties: true
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Save kundali chart
+      tags:
+      - kundali
+securityDefinitions:
+  BearerAuth:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"
